@@ -91,7 +91,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-site px-4 py-12 sm:px-6 md:py-16">
         <h2 className="text-3xl sm:text-4xl">The practice</h2>
         <p className="mt-3 max-w-2xl text-lg text-navy-soft">
-          Opened in {doctor.opened} at {address.street}, {address.suburb}, {address.landmark.toLowerCase()}. A waiting room, a
+          Opened in {doctor.opened} at {address.street}, {address.suburb}, {address.landmarkInSentence}. A waiting room, a
           consulting room with an examination bed, and the equipment for everyday examinations and minor procedures.
         </p>
         <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

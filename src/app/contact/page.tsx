@@ -9,7 +9,7 @@ import { address, contact, doctor, maps } from '@/lib/practice';
 
 export const metadata: Metadata = {
   title: 'Contact and directions, 3 Matakata Street, Mbekweni',
-  description: `Call or WhatsApp ${doctor.shortName} on 071 670 0634. ${address.street}, ${address.suburb}, ${address.city}, ${address.landmark.toLowerCase()}. Open Monday to Friday 09:00 to 17:00 and weekends and public holidays 09:00 to 14:00.`,
+  description: `Call or WhatsApp ${doctor.shortName} on 071 670 0634. ${address.street}, ${address.suburb}, ${address.city}, ${address.landmarkInSentence}. Open Monday to Friday 09:00 to 17:00 and weekends and public holidays 09:00 to 14:00.`,
   alternates: { canonical: '/contact/' },
 };
 

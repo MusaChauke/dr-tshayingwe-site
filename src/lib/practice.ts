@@ -45,6 +45,7 @@ export const address = {
   country: 'South Africa',
   countryCode: 'ZA',
   landmark: 'Opposite Mbekweni Library',
+  landmarkInSentence: 'opposite Mbekweni Library',
   oneLine: '3 Matakata Street, Mbekweni, Paarl, 7655',
 };
 

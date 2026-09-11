@@ -36,13 +36,15 @@ export default function HomePage() {
         <div className="grid md:grid-cols-2">
           <div className="order-2 px-4 pb-12 pt-8 sm:px-6 md:order-1 md:py-20">
             <div className="md:ml-auto md:max-w-[34rem]">
-              <p className="font-serif text-2xl italic text-navy-soft">Molo, wamkelekile.</p>
+              <p className="font-serif text-2xl italic text-navy-soft" lang="xh">
+                Molo, wamkelekile.
+              </p>
               <h1 className="mt-3 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
                 Your family doctor in Mbekweni, Paarl.
               </h1>
               <p className="mt-5 max-w-prose text-lg">
                 {doctor.fullName}, {doctor.qualifications}, is a general practitioner at {address.street},{' '}
-                {address.landmark.toLowerCase()}. Adults, children and older patients are all welcome, seven days a
+                {address.landmarkInSentence}. Adults, children and older patients are all welcome, seven days a
                 week, including public holidays.
               </p>
               <CtaButtons className="mt-7" />
@@ -59,7 +61,7 @@ export default function HomePage() {
               width={1100}
               height={1375}
               priority
-              className="absolute inset-0 h-full w-full object-cover object-[50%_18%]"
+              className="absolute inset-0 h-full w-full object-cover object-[62%_18%]"
             />
             <svg
               className="absolute inset-y-0 left-0 hidden h-full w-28 md:block"
@@ -97,7 +99,7 @@ export default function HomePage() {
         <ul className="mx-auto grid max-w-site gap-5 px-4 py-7 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
           <Fact icon="clipboard" label="Practice number" value={doctor.practiceNumber} />
           <Fact icon="badge" label="HPCSA (MP) No." value={doctor.hpcsaNumber.replace('MP ', '')} />
-          <Fact icon="pin" label="Address" value={`${address.street}, ${address.suburb}, ${address.landmark.toLowerCase()}`} />
+          <Fact icon="pin" label="Address" value={`${address.street}, ${address.suburb}, ${address.landmarkInSentence}`} />
           <Fact icon="clock" label="Opening times" value="7 days a week, including public holidays" />
         </ul>
       </section>

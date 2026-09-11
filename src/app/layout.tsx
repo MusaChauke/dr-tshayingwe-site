@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Atkinson_Hyperlegible, Newsreader } from 'next/font/google';
+import { Newsreader, Source_Sans_3 } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -15,9 +15,9 @@ const display = Newsreader({
   display: 'swap',
 });
 
-const body = Atkinson_Hyperlegible({
+const body = Source_Sans_3({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-body',
   display: 'swap',

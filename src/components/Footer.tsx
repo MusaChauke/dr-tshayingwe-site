@@ -68,7 +68,9 @@ export default function Footer() {
             <Caduceus className="h-9 w-6" />
             <span className="font-serif text-lg text-gold">{slogan}</span>
           </div>
-          <div>Doctor / Kwagqirha / Dokter</div>
+          <div>
+            Doctor / <span lang="xh">Kwagqirha</span> / <span lang="af">Dokter</span>
+          </div>
           <div className="flex gap-4">
             <Link className="hover:underline" href="/privacy/">Privacy</Link>
             <span>&copy; {new Date().getFullYear()} {doctor.shortName}</span>
