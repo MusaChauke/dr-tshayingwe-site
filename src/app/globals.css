@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1b2a4a;
+  --gold: #c9a227;
+  --cream: #f5f2ec;
+  --charcoal: #2a2a2a;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-white text-ink font-sans antialiased;
+  font-size: 1.0625rem; /* 17px: larger default for readability */
+  line-height: 1.6;
+}
+
+/* Room for the fixed action bar on phones */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 4.75rem;
+  }
+}
+
+h1,
+h2,
+h3 {
+  @apply font-serif text-navy;
+  text-wrap: balance;
+  font-variation-settings: 'opsz' 72;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* One deliberate motion: the gold curve draws itself on first paint. */
+.curve-draw {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: curve-draw 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+@keyframes curve-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .curve-draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Gold hairline used as a section divider, like the rules on the banner */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+}
+
+.tap {
+  min-height: 48px;
+}
