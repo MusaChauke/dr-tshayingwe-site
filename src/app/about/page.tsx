@@ -14,9 +14,10 @@ export const metadata = pageMeta(
 );
 
 const gallery = [
-  { name: 'waiting-room', alt: 'The waiting room: a navy sofa, coffee table and the practice banner against green walls', w: 1600, h: 1104, caption: 'The waiting room' },
-  { name: 'consulting-room', alt: 'The consulting room with an examination bed, desk and drip stand', w: 1350, h: 1050, caption: 'The consulting room' },
-  { name: 'equipment', alt: 'Examination and suturing instruments laid out on the desk, including an otoscope set and blood pressure monitor', w: 1400, h: 993, caption: 'Equipment for examinations and minor procedures' },
+  { name: 'waiting-room', alt: 'The waiting room: a navy sofa, coffee table and the practice banner against green walls', w: 1600, h: 1203, caption: 'The waiting room' },
+  { name: 'consulting-room', alt: 'The consulting room with an examination bed and desk', w: 1200, h: 1502, caption: 'The consulting room' },
+  { name: 'equipment', alt: 'Examination and suturing instruments laid out on the desk, including an otoscope set and blood pressure monitor', w: 1400, h: 1000, caption: 'Equipment for examinations and minor procedures' },
+  { name: 'dispensary', alt: 'Wooden shelves stocked with medicines in the dispensary', w: 1200, h: 1597, caption: 'Medicines dispensed on site' },
 ];
 
 const bullet = <span className="mt-[0.6em] h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true" />;

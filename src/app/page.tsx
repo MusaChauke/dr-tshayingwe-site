@@ -68,7 +68,7 @@ export default function HomePage() {
           name="entrance"
           alt={`${doctor.fullName} standing at the entrance of the practice at ${address.street}, ${address.suburb}, under the practice sign`}
           width={1600}
-          height={1156}
+          height={1203}
           priority
           sizes="100vw"
           className="hero-photo absolute inset-0 h-full w-full object-cover object-[50%_35%]"
@@ -177,7 +177,7 @@ export default function HomePage() {
               name="waiting-room"
               alt=""
               width={1600}
-              height={1104}
+              height={1203}
               sizes="100vw"
               className="absolute inset-0 h-full w-full object-cover"
             />

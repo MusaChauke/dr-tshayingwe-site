@@ -7,8 +7,9 @@ import { doctor } from '@/lib/practice';
 
 const cards = [
   { name: 'waiting-room', alt: 'The waiting room: a navy sofa, coffee table and the practice banner against green walls', caption: 'The waiting room' },
-  { name: 'consulting-room', alt: 'The consulting room with an examination bed, desk and drip stand', caption: 'The consulting room' },
+  { name: 'consulting-room', alt: 'The consulting room with an examination bed and desk', caption: 'The consulting room' },
   { name: 'equipment', alt: 'Examination and suturing instruments laid out on the desk, including an otoscope set and blood pressure monitor', caption: 'Equipment for examinations and minor procedures' },
+  { name: 'dispensary', alt: 'Wooden shelves stocked with medicines in the dispensary', caption: 'Medicines dispensed on site' },
   { name: 'entrance', alt: `${doctor.fullName} at the entrance of the practice under the sign`, caption: 'The entrance on Matakata Street' },
 ];
 
@@ -68,7 +69,7 @@ export default function Gallery() {
         {cards.map((c) => (
           <li key={c.name} className="w-[78vw] shrink-0 snap-start sm:w-80">
             <figure className="overflow-hidden rounded-card bg-white">
-              <Photo name={c.name} alt={c.alt} width={1600} height={1104} sizes="(min-width: 640px) 320px, 78vw" className="aspect-[4/3] w-full object-cover" />
+              <Photo name={c.name} alt={c.alt} width={1600} height={1203} sizes="(min-width: 640px) 320px, 78vw" className="aspect-[4/3] w-full object-cover" />
               <figcaption className="px-5 py-4 text-navy-soft">{c.caption}</figcaption>
             </figure>
           </li>

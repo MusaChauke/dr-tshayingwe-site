@@ -117,7 +117,7 @@ export default function ContactPage() {
                   name="building"
                   alt={`The practice building on ${address.street}: a grey two-storey building with the practice sign above the ground-floor entrance`}
                   width={1600}
-                  height={497}
+                  height={900}
                   className="w-full object-cover"
                 />
                 <figcaption className="px-5 py-3 text-sm text-navy-soft">What to look for from the street.</figcaption>
