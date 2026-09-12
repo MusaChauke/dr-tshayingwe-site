@@ -20,6 +20,11 @@ npm run dev        # http://localhost:3000
 npx next build     # static site in out/
 ```
 
+## Preview (GitHub Pages)
+
+Live preview, not indexed by search engines: https://musachauke.github.io/dr-tshayingwe-site/
+Redeploy after changes with `bash deploy-preview.sh` (builds with the `/dr-tshayingwe-site` base path and pushes `out/` to the `gh-pages` branch).
+
 ## Deploy (Vercel)
 
 ```bash
