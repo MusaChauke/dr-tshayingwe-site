@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   openGraph: { ...ogBase, url: '/', title: homeTitle, description: homeDescription },
   twitter: { card: 'summary_large_image', title: homeTitle, description: homeDescription, images: [OG_IMAGE.url] },
   robots: isPreview ? { index: false, follow: false } : { index: true, follow: true },
+  // Google Search Console ownership (META method, verified via the HealthHalo service account). Do not remove.
+  verification: { google: '48gxSaYB8LVNeAtp_dZkQ52ZkPQh2gHNQuk324dWeXI' },
   alternates: { canonical: '/' },
 };
 
