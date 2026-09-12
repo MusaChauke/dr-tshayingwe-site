@@ -40,8 +40,7 @@ export default function Emblem({
       <path d="M46 53 H54 L52.5 65 H47.5 Z" fill="#1B2A4A" />
       <path d="M50 54 L45 49 M50 54 L55 49" stroke="#1B2A4A" strokeWidth="3.2" strokeLinecap="round" fill="none" />
       {/* gold cupped hands */}
-      <path d="M15 58 C19 78 37 86 50 86 C63 86 81 78 85 58 C79 68 66 73 50 73 C34 73 21 68 15 58 Z" fill="#C9A227" />
-      <path d="M19 56 c3 -4 8 -3 10 1 M81 56 c-3 -4 -8 -3 -10 1" stroke="#C9A227" strokeWidth="4" strokeLinecap="round" fill="none" />
+      <path d="M13 52 C17 78 37 87 50 87 C63 87 83 78 87 52 C82 66 66 73 50 73 C34 73 18 66 13 52 Z" fill="#C9A227" />
     </svg>
   );
 }
