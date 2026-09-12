@@ -27,12 +27,10 @@ Redeploy after changes with `bash deploy-preview.sh` (builds with the `/dr-tshay
 
 ## Deploy (Vercel, HealthHalo team)
 
-Production hostname: `https://www.drtshayingwe.co.za` (own domain; DNS at whichever registrar it is bought from).
+Live at `https://drtshayingwe.vercel.app` (free Vercel address, project `drtshayingwe` on the HealthHalo team). If a domain is bought later: add it to the project, set `NEXT_PUBLIC_SITE_URL` there, redeploy.
 
 1. Copy `.env.example` to `.env` and paste a Vercel token (Account > Tokens, scoped to the HealthHalo team).
-2. `bash deploy-prod.sh` builds and deploys; the first run creates the project `dr-tshayingwe-site`.
-3. Once: add `www.drtshayingwe.co.za` and `drtshayingwe.co.za` to the project (`npx vercel domains add ...`), then at the registrar
-   add `A @ 76.76.21.21` and `CNAME www cname.vercel-dns.com` (Vercel shows the exact values).
+2. `bash deploy-prod.sh` deploys (Vercel builds the static export itself).
 
 Any static host also works: upload the contents of `out/`.
 

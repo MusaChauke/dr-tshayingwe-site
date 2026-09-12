@@ -3,11 +3,7 @@
 # First run creates the project "dr-tshayingwe-site"; later runs redeploy it.
 set -euo pipefail
 cd "$(dirname "$0")"
-set -a; . ./.env; set +a
+set -a; . <(sed "s/$//" ./.env); set +a
 [ -n "${VERCEL_TOKEN:-}" ] || { echo "VERCEL_TOKEN is empty in .env"; exit 1; }
-rm -rf out .vercel/output
-npx next build
-npx vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --name dr-tshayingwe-site
-echo "Deployed. Add the domains once:"
-echo "  npx vercel domains add www.drtshayingwe.co.za dr-tshayingwe-site --token \$VERCEL_TOKEN --scope \$VERCEL_ORG_ID"
-echo "  npx vercel domains add drtshayingwe.co.za dr-tshayingwe-site --token \$VERCEL_TOKEN --scope \$VERCEL_ORG_ID   (redirects to www)"
+npx vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
+echo "Deployed to https://drtshayingwe.vercel.app (project drtshayingwe on the HealthHalo team)."
