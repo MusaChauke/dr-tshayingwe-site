@@ -9,13 +9,15 @@ function Row({ icon, label, children }: { icon: Parameters<typeof Icon>[0]['name
       <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold text-gold" aria-hidden="true">
         <Icon name={icon} className="h-5 w-5" />
       </span>
-      <div>
-        <div className="text-sm font-bold text-gold">{label}</div>
-        <div className="text-white">{children}</div>
-      </div>
+      <p>
+        <span className="block text-sm font-bold text-gold">{label}</span>
+        <span className="text-white">{children}</span>
+      </p>
     </div>
   );
 }
+
+const link = 'underline decoration-gold underline-offset-4';
 
 export default function Footer() {
   return (
@@ -24,13 +26,13 @@ export default function Footer() {
         <div>
           <h2 className="mb-2 font-serif text-2xl text-white">Contact</h2>
           <Row icon="phone" label="Cellphone">
-            <a className="hover:underline" href={contact.tel}>{contact.phoneDisplay}</a>
+            <a className={link} href={contact.tel}>{contact.phoneDisplay}</a>
           </Row>
           <Row icon="whatsapp" label="WhatsApp">
-            <a className="hover:underline" href={contact.whatsapp}>{contact.phoneDisplay}</a>
+            <a className={link} href={contact.whatsapp}>{contact.phoneDisplay}</a>
           </Row>
           <Row icon="mail" label="Email">
-            <a className="break-all hover:underline" href={contact.mailto}>{contact.email}</a>
+            <a className={`break-all ${link}`} href={contact.mailto}>{contact.email}</a>
           </Row>
         </div>
         <div>
@@ -42,9 +44,9 @@ export default function Footer() {
           </Row>
           <Row icon="clock" label="Opening times">
             {hours.map((h) => (
-              <div key={h.days}>
-                {h.days}: {h.open} - {h.close}
-              </div>
+              <span key={h.days} className="block">
+                {h.days}: {h.open} to {h.close}
+              </span>
             ))}
           </Row>
         </div>
@@ -53,11 +55,11 @@ export default function Footer() {
           <Row icon="clipboard" label="Practice number">{doctor.practiceNumber}</Row>
           <Row icon="badge" label="HPCSA number">
             {doctor.hpcsaNumber}
-            <div className="text-sm text-white/80">
-              <a className="underline decoration-gold underline-offset-4" href={doctor.hpcsaLookup} target="_blank" rel="noopener noreferrer">
-                Verify on the HPCSA register
+            <span className="block text-sm text-white/80">
+              <a className={link} href={doctor.hpcsaLookup} target="_blank" rel="noopener noreferrer">
+                Check the HPCSA register<span className="sr-only"> (opens in a new tab)</span>
               </a>
-            </div>
+            </span>
           </Row>
         </div>
       </div>
@@ -72,7 +74,7 @@ export default function Footer() {
             Doctor / <span lang="xh">Kwagqirha</span> / <span lang="af">Dokter</span>
           </div>
           <div className="flex gap-4">
-            <Link className="hover:underline" href="/privacy/">Privacy</Link>
+            <Link className={link} href="/privacy/">Privacy</Link>
             <span>&copy; {new Date().getFullYear()} {doctor.shortName}</span>
           </div>
         </div>

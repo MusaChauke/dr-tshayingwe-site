@@ -1,7 +1,10 @@
+import Link from 'next/link';
 import Icon from './Icon';
 import { services, type ServiceGroup } from '@/lib/practice';
 
-function Group({ group, detailed }: { group: ServiceGroup; detailed: boolean }) {
+type Level = 'h2' | 'h3';
+
+function Group({ group, detailed, headingLevel: Heading }: { group: ServiceGroup; detailed: boolean; headingLevel: Level }) {
   return (
     <li id={group.slug} className="flex gap-4 py-6 scroll-mt-24">
       <span
@@ -11,9 +14,13 @@ function Group({ group, detailed }: { group: ServiceGroup; detailed: boolean }) 
         <Icon name={group.icon} className="h-7 w-7" />
       </span>
       <div className="min-w-0">
-        <h3 className="text-2xl">{group.title}</h3>
+        <Heading className="text-2xl">
+          <Link href={`/services/${group.slug}/`} className="hover:underline hover:decoration-gold hover:decoration-2 hover:underline-offset-4">
+            {group.title}
+          </Link>
+        </Heading>
         {detailed && <p className="mt-1 text-navy-soft">{group.summary}</p>}
-        <ul className={`mt-2 ${detailed ? 'space-y-2' : 'space-y-1'}`}>
+        <ul role="list" className={`mt-2 ${detailed ? 'space-y-2' : 'space-y-1'}`}>
           {group.items.map((item) => (
             <li key={item.name} className="flex gap-2">
               <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
@@ -29,11 +36,11 @@ function Group({ group, detailed }: { group: ServiceGroup; detailed: boolean }) 
   );
 }
 
-export default function ServiceList({ detailed = false }: { detailed?: boolean }) {
+export default function ServiceList({ detailed = false, headingLevel = 'h3' }: { detailed?: boolean; headingLevel?: Level }) {
   return (
-    <ul className="grid gap-x-12 md:grid-cols-2 [&>li]:border-b [&>li]:border-gold/40">
+    <ul role="list" className="grid gap-x-12 md:grid-cols-2 [&>li]:border-b [&>li]:border-gold/40">
       {services.map((g) => (
-        <Group key={g.slug} group={g} detailed={detailed} />
+        <Group key={g.slug} group={g} detailed={detailed} headingLevel={headingLevel} />
       ))}
     </ul>
   );

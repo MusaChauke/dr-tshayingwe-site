@@ -16,7 +16,7 @@ export default function EmergencyNotice({ compact = false }: { compact?: boolean
         <a className="font-bold underline" href={emergency.cell.tel}>
           {emergency.cell.number}
         </a>{' '}
-        from a cell phone, or go to the nearest emergency centre.{' '}
+        from a cell phone, or go to the nearest hospital emergency unit (casualty).{' '}
         {!compact && (
           <>
             {emergency.hospital.label}:{' '}

@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
 import CtaButtons from '@/components/CtaButtons';
+import EmergencyNotice from '@/components/EmergencyNotice';
 import Photo from '@/components/Photo';
 import { JsonLd, breadcrumb } from '@/lib/schema';
+import { pageMeta } from '@/lib/seo';
 import { address, bio, doctor, toConfirm } from '@/lib/practice';
 
-export const metadata: Metadata = {
-  title: `About ${doctor.fullName}, GP in Mbekweni`,
-  description: `${doctor.fullName}, ${doctor.qualifications}, HPCSA ${doctor.hpcsaNumber}. Trained in nursing and medicine; opened his general practice in Mbekweni, Paarl in ${doctor.opened}. See the practice and how consultations work.`,
-  alternates: { canonical: '/about/' },
-};
+export const metadata = pageMeta(
+  '/about/',
+  `About ${doctor.fullName}`,
+  `${doctor.fullName}, ${doctor.qualifications}, HPCSA ${doctor.hpcsaNumber}. General practice in Mbekweni, Paarl since ${doctor.opened}. See the practice and how consultations work.`,
+);
 
 const gallery = [
   { name: 'waiting-room', alt: 'The waiting room: a navy sofa, coffee table and the practice banner against green walls', w: 1600, h: 1104, caption: 'The waiting room' },
@@ -41,12 +42,12 @@ export default function AboutPage() {
                 <dd className="sm:col-span-2">
                   {doctor.hpcsaNumber}.{' '}
                   <a
-                    className="underline decoration-gold decoration-2 underline-offset-4"
+                    className="font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4"
                     href={doctor.hpcsaLookup}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Check the HPCSA register
+                    Check the HPCSA register<span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </dd>
               </div>
@@ -57,7 +58,7 @@ export default function AboutPage() {
             </dl>
 
             <h2 className="mt-10 text-2xl">How consultations work here</h2>
-            <ul className="mt-3 space-y-3">
+            <ul role="list" className="mt-3 space-y-3">
               {bio.approach.map((line) => (
                 <li key={line} className="flex gap-3">
                   <span className="mt-[0.6em] h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true" />
@@ -94,7 +95,7 @@ export default function AboutPage() {
           Opened in {doctor.opened} at {address.street}, {address.suburb}, {address.landmarkInSentence}. A waiting room, a
           consulting room with an examination bed, and the equipment for everyday examinations and minor procedures.
         </p>
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul role="list" className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((g) => (
             <li key={g.name}>
               <figure>
@@ -105,6 +106,9 @@ export default function AboutPage() {
           ))}
         </ul>
         <CtaButtons directions className="mt-10" />
+        <div className="mt-10">
+          <EmergencyNotice compact />
+        </div>
       </section>
     </>
   );

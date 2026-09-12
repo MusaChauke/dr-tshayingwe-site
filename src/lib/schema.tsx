@@ -29,7 +29,7 @@ function typedServices() {
   return out;
 }
 
-/** Site-wide structured data: the practice (a local business) and the doctor. */
+/** Site-wide structured data: the practice (a local business) and the doctor (a person). */
 export function siteSchema() {
   return {
     '@context': 'https://schema.org',
@@ -37,8 +37,8 @@ export function siteSchema() {
       {
         '@type': 'MedicalClinic',
         '@id': CLINIC_ID,
-        name: `${doctor.shortName} General Practitioner`,
-        alternateName: [doctor.fullName, 'Dr Tshayingwe Mbekweni'],
+        name: doctor.shortName,
+        alternateName: [doctor.fullName, `${doctor.shortName} General Practitioner`],
         description: `${tagline} General practitioner in Mbekweni, Paarl: consultations, chronic disease care, child and family health, minor procedures, HIV testing, women's and men's health, and virtual consultations. Open seven days a week.`,
         url: `${SITE_URL}/`,
         telephone: contact.phoneE164,
@@ -47,8 +47,8 @@ export function siteSchema() {
         logo: `${SITE_URL}/icon.svg`,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: address.street,
-          addressLocality: `${address.suburb}, ${address.city}`,
+          streetAddress: `${address.street}, ${address.suburb}`,
+          addressLocality: address.city,
           addressRegion: address.province,
           postalCode: address.postalCode,
           addressCountry: address.countryCode,
@@ -67,18 +67,18 @@ export function siteSchema() {
         founder: { '@id': DOCTOR_ID },
       },
       {
-        '@type': 'Physician',
+        '@type': 'Person',
         '@id': DOCTOR_ID,
         name: doctor.fullName,
         honorificPrefix: 'Dr',
         givenName: 'Sivuyile',
         familyName: doctor.surname,
         jobTitle: doctor.role,
+        hasOccupation: { '@type': 'Occupation', name: 'General Practitioner' },
         description: `${doctor.fullName}, ${doctor.qualifications}, general practitioner in Mbekweni, Paarl.`,
         image: `${SITE_URL}/photos/doctor-portrait.jpg`,
         url: `${SITE_URL}/about/`,
         telephone: contact.phoneE164,
-        medicalSpecialty: 'PrimaryCare',
         worksFor: { '@id': CLINIC_ID },
         alumniOf: [
           { '@type': 'CollegeOrUniversity', name: 'Walter Sisulu University' },
@@ -98,7 +98,7 @@ export function siteSchema() {
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
         url: `${SITE_URL}/`,
-        name: `${doctor.shortName}, General Practitioner in Mbekweni, Paarl`,
+        name: doctor.shortName,
         inLanguage: 'en-ZA',
         publisher: { '@id': CLINIC_ID },
       },

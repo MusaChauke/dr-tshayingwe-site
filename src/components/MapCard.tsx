@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { address, maps } from '@/lib/practice';
 
 /**
@@ -9,11 +9,18 @@ import { address, maps } from '@/lib/practice';
  */
 export default function MapCard() {
   const [loaded, setLoaded] = useState(false);
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (loaded) frameRef.current?.focus();
+  }, [loaded]);
 
   return (
     <div className="overflow-hidden rounded-lg border border-gold/40 bg-cream">
       {loaded ? (
         <iframe
+          ref={frameRef}
+          tabIndex={-1}
           title={`Map showing ${address.street}, ${address.suburb}, ${address.city}`}
           src={maps.embed}
           className="block h-72 w-full md:h-96"
@@ -24,7 +31,7 @@ export default function MapCard() {
       ) : (
         <div className="flex h-72 flex-col items-center justify-center gap-4 p-6 text-center md:h-96">
           <p className="max-w-sm text-navy-soft">
-            The map is loaded from Google Maps when you ask for it. Or open directions straight in your maps app.
+            Press &ldquo;Show map&rdquo; to load the map from Google Maps, or open directions in your maps app.
           </p>
           <button
             type="button"
@@ -34,13 +41,13 @@ export default function MapCard() {
             Show map
           </button>
           <div className="flex flex-wrap justify-center gap-3 text-sm">
-            <a className="underline decoration-gold decoration-2 underline-offset-4" href={maps.googleDirections} target="_blank" rel="noopener noreferrer">
+            <a className="font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4" href={maps.googleDirections}>
               Google Maps
             </a>
-            <a className="underline decoration-gold decoration-2 underline-offset-4" href={maps.waze} target="_blank" rel="noopener noreferrer">
+            <a className="font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4" href={maps.waze}>
               Waze
             </a>
-            <a className="underline decoration-gold decoration-2 underline-offset-4" href={maps.apple} target="_blank" rel="noopener noreferrer">
+            <a className="font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4" href={maps.apple}>
               Apple Maps
             </a>
           </div>

@@ -5,7 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ActionBar from '@/components/ActionBar';
 import { JsonLd, siteSchema } from '@/lib/schema';
-import { SITE_URL, doctor, tagline } from '@/lib/practice';
+import { OG_IMAGE, ogBase } from '@/lib/seo';
+import { SITE_URL, doctor } from '@/lib/practice';
 
 const display = Newsreader({
   subsets: ['latin'],
@@ -23,13 +24,19 @@ const body = Source_Sans_3({
   display: 'swap',
 });
 
+// Set NEXT_PUBLIC_PREVIEW=1 when deploying to a temporary hostname so the preview is never indexed.
+const isPreview = process.env.NEXT_PUBLIC_PREVIEW === '1';
+
+const homeTitle = `${doctor.shortName} | General Practitioner in Mbekweni, Paarl`;
+const homeDescription = `${doctor.fullName}, GP at 3 Matakata Street, Mbekweni, Paarl, opposite the library. Open 7 days a week. Call or WhatsApp 071 670 0634.`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${doctor.shortName} | General Practitioner in Mbekweni, Paarl`,
+    default: homeTitle,
     template: `%s | ${doctor.shortName}, Paarl`,
   },
-  description: `${doctor.fullName}, ${doctor.qualifications}: family doctor at 3 Matakata Street, Mbekweni, Paarl, opposite the library. Open 7 days a week. Consultations, chronic care, child health, minor procedures and virtual consultations. Call or WhatsApp 071 670 0634.`,
+  description: homeDescription,
   applicationName: doctor.shortName,
   keywords: [
     'GP Paarl',
@@ -42,18 +49,10 @@ export const metadata: Metadata = {
     'ugqirha Paarl',
     'Dr Tshayingwe',
   ],
-  openGraph: {
-    type: 'website',
-    locale: 'en_ZA',
-    siteName: `${doctor.shortName}, General Practitioner`,
-    title: `${doctor.shortName} | General Practitioner in Mbekweni, Paarl`,
-    description: `${tagline} Family doctor at 3 Matakata Street, Mbekweni, Paarl. Open 7 days a week. Call or WhatsApp 071 670 0634.`,
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: `${doctor.shortName}, General Practitioner in Mbekweni, Paarl` }],
-  },
-  twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
-  robots: { index: true, follow: true },
+  openGraph: { ...ogBase, url: '/', title: homeTitle, description: homeDescription },
+  twitter: { card: 'summary_large_image', title: homeTitle, description: homeDescription, images: [OG_IMAGE.url] },
+  robots: isPreview ? { index: false, follow: false } : { index: true, follow: true },
   alternates: { canonical: '/' },
-  formatDetection: { telephone: true, email: true, address: true },
 };
 
 export const viewport: Viewport = {

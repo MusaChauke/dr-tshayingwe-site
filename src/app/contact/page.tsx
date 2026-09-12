@@ -1,17 +1,17 @@
-import type { Metadata } from 'next';
 import EmergencyNotice from '@/components/EmergencyNotice';
 import HoursTable from '@/components/HoursTable';
 import Icon from '@/components/Icon';
 import MapCard from '@/components/MapCard';
 import Photo from '@/components/Photo';
 import { JsonLd, breadcrumb } from '@/lib/schema';
-import { address, contact, doctor, maps } from '@/lib/practice';
+import { pageMeta } from '@/lib/seo';
+import { address, contact, maps } from '@/lib/practice';
 
-export const metadata: Metadata = {
-  title: 'Contact and directions, 3 Matakata Street, Mbekweni',
-  description: `Call or WhatsApp ${doctor.shortName} on 071 670 0634. ${address.street}, ${address.suburb}, ${address.city}, ${address.landmarkInSentence}. Open Monday to Friday 09:00 to 17:00 and weekends and public holidays 09:00 to 14:00.`,
-  alternates: { canonical: '/contact/' },
-};
+export const metadata = pageMeta(
+  '/contact/',
+  'Contact, directions and hours',
+  `Call or WhatsApp 071 670 0634. ${address.street}, ${address.suburb}, ${address.city}, ${address.landmarkInSentence}. Open 7 days a week, 09:00 to 17:00 weekdays.`,
+);
 
 function Method({
   icon,
@@ -34,7 +34,7 @@ function Method({
       <a href={href} className={`tap flex items-center gap-4 rounded-lg px-5 py-4 ${bg}`}>
         <Icon name={icon} className="h-8 w-8 shrink-0" />
         <span>
-          <span className="block text-sm font-bold opacity-90">{title}</span>
+          <span className="block text-sm font-bold">{title}</span>
           <span className="block text-xl font-bold">{value}</span>
         </span>
       </a>
@@ -48,15 +48,29 @@ export default function ContactPage() {
     <>
       <JsonLd data={breadcrumb([{ name: 'Contact', path: '/contact/' }])} />
       <section className="mx-auto max-w-site px-4 py-12 sm:px-6 md:py-16">
-        <h1 className="text-4xl sm:text-5xl">Contact us</h1>
+        <h1 className="text-4xl sm:text-5xl">Contact Dr Tshayingwe in Mbekweni, Paarl</h1>
         <p className="mt-4 max-w-2xl text-lg">
           WhatsApp is the quickest way to reach the practice. Send your name and what you need, and we will reply
           during opening times.
         </p>
 
-        <ul className="mt-8 grid gap-6 md:grid-cols-3">
-          <Method icon="whatsapp" title="WhatsApp" value={contact.phoneDisplay} href={contact.whatsapp} note="Opens WhatsApp with a message ready to send." tone="wa" />
-          <Method icon="phone" title="Call" value={contact.phoneDisplay} href={contact.tel} note="Answered during opening times." tone="navy" />
+        <ul role="list" className="mt-8 grid gap-6 md:grid-cols-3">
+          <Method
+            icon="whatsapp"
+            title="WhatsApp"
+            value={contact.phoneDisplay}
+            href={contact.whatsapp}
+            note="Opens WhatsApp with a message ready to send. Add your name and what you need."
+            tone="wa"
+          />
+          <Method
+            icon="phone"
+            title="Call"
+            value={contact.phoneDisplay}
+            href={contact.tel}
+            note="During opening times. If there is no answer, we are with a patient: please send a WhatsApp."
+            tone="navy"
+          />
           <Method icon="mail" title="Email" value={contact.email} href={contact.mailto} note="For documents and non-urgent questions." tone="gold" />
         </ul>
       </section>
@@ -73,9 +87,11 @@ export default function ContactPage() {
                 <br />
                 {address.suburb}, {address.city}, {address.postalCode}
               </p>
-              <p className="mt-2 text-lg">{address.landmark}. The entrance is on {address.street.replace(/^\d+\s/, '')} at street level, under the practice sign.</p>
+              <p className="mt-2 text-lg">
+                {address.landmark}. The entrance is on {address.street.replace(/^\d+\s/, '')} at street level, under the practice sign.
+              </p>
             </address>
-            <ul className="mt-5 flex flex-wrap gap-3">
+            <ul role="list" className="mt-5 flex flex-wrap gap-3">
               {[
                 { label: 'Google Maps', href: maps.googleDirections },
                 { label: 'Waze', href: maps.waze },
@@ -84,8 +100,6 @@ export default function ContactPage() {
                 <li key={m.label}>
                   <a
                     href={m.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="tap inline-flex items-center gap-2 rounded-md border-2 border-navy px-4 py-2.5 font-bold text-navy hover:bg-cream"
                   >
                     <Icon name="pin" className="h-5 w-5" />

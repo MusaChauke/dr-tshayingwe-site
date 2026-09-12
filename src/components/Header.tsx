@@ -36,7 +36,7 @@ export default function Header() {
         </nav>
       </div>
 
-      <nav aria-label="Main, mobile" className="border-t border-gold/30 md:hidden">
+      <nav aria-label="Main" className="border-t border-gold/30 md:hidden">
         <ul className="mx-auto flex max-w-site justify-between gap-2 overflow-x-auto px-3 text-sm font-bold text-navy">
           {nav.map((item) => (
             <li key={item.href} className="shrink-0">

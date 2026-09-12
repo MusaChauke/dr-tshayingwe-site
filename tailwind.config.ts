@@ -11,7 +11,7 @@ const config: Config = {
         charcoal: '#2A2A2A',
         ink: '#1F2937',
         // WhatsApp brand greens: the darker one keeps white text readable.
-        wa: { DEFAULT: '#128C7E', bright: '#25D366', deep: '#0E6F64' },
+        wa: { DEFAULT: '#0E6F64', bright: '#25D366', deep: '#0A5C53' },
       },
       fontFamily: {
         serif: ['var(--font-display)', 'Georgia', 'Times New Roman', 'serif'],

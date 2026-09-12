@@ -1,13 +1,15 @@
-import type { Metadata } from 'next';
 import { JsonLd, breadcrumb } from '@/lib/schema';
+import { pageMeta } from '@/lib/seo';
 import { address, contact, doctor } from '@/lib/practice';
 
-export const metadata: Metadata = {
-  title: 'Privacy notice',
-  description: `How ${doctor.shortName}'s website and practice handle personal information under POPIA.`,
-  alternates: { canonical: '/privacy/' },
-  robots: { index: false, follow: true },
-};
+export const metadata = pageMeta(
+  '/privacy/',
+  'Privacy notice',
+  `How ${doctor.shortName}'s website and practice handle personal information under POPIA.`,
+  { robots: { index: false, follow: true } },
+);
+
+const link = 'font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4';
 
 export default function PrivacyPage() {
   return (
@@ -15,7 +17,13 @@ export default function PrivacyPage() {
       <JsonLd data={breadcrumb([{ name: 'Privacy', path: '/privacy/' }])} />
       <section className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-16">
         <h1 className="text-4xl">Privacy notice</h1>
-        <p className="mt-2 text-navy-soft">Last updated 11 September 2026</p>
+        <p className="mt-2 text-navy-soft">Last updated 12 September 2026</p>
+
+        <h2 className="mt-8 text-2xl">Who is responsible</h2>
+        <p className="mt-2">
+          The responsible party under the Protection of Personal Information Act (POPIA) is {doctor.fullName}, general
+          practitioner, {address.oneLine}. He is also the practice&rsquo;s Information Officer.
+        </p>
 
         <h2 className="mt-8 text-2xl">This website</h2>
         <p className="mt-2">
@@ -32,23 +40,32 @@ export default function PrivacyPage() {
         <h2 className="mt-8 text-2xl">When you contact the practice</h2>
         <p className="mt-2">
           When you phone, WhatsApp or email the practice, we use the details you give us to reply, to arrange your
-          appointment and to provide care. Clinical information you share becomes part of your medical record, which is
-          kept confidential and stored securely for as long as the Health Professions Council of South Africa requires.
-          We do not sell or share your information with anyone outside your care, except where the law requires it or
-          you ask us to (for example, a medical aid claim or a referral).
+          appointment and to provide care. Clinical information you share becomes part of your medical record, which
+          the practice must keep under the National Health Act and the Health Professions Council of South Africa&rsquo;s
+          record-keeping guidelines. It is kept confidential and stored securely for as long as those rules require. We
+          do not sell or share your information with anyone outside your care, except where the law requires it or you
+          ask us to (for example, a referral letter you ask us to send to another practitioner).
+        </p>
+        <p className="mt-2">
+          We use WhatsApp (Meta) and Gmail (Google) to communicate with patients. Messages and documents you send or
+          receive through these services are stored by those companies on servers outside South Africa, under their own
+          privacy terms. If you would rather not use them, phone us or come to the practice.
+        </p>
+        <p className="mt-2">
+          Giving us your details is voluntary, but without your name, a contact number and the medical information that
+          matters to your care we may not be able to treat you or reach you about your results.
         </p>
 
         <h2 className="mt-8 text-2xl">Your rights</h2>
         <p className="mt-2">
-          Under the Protection of Personal Information Act (POPIA) you may ask what information we hold about you, ask
-          for it to be corrected, or object to how it is used. Send requests to the Information Officer, {doctor.fullName},
-          at{' '}
-          <a className="underline decoration-gold decoration-2 underline-offset-4" href={contact.mailto}>
+          Under POPIA you may ask what information we hold about you, ask for it to be corrected, or object to how it
+          is used. Send requests to the Information Officer, {doctor.fullName}, at{' '}
+          <a className={link} href={contact.mailto}>
             {contact.email}
           </a>{' '}
           or at {address.oneLine}. If you are not satisfied with our response, you may complain to the Information
           Regulator (South Africa) at{' '}
-          <a className="underline decoration-gold decoration-2 underline-offset-4" href="mailto:POPIAComplaints@inforegulator.org.za">
+          <a className={link} href="mailto:POPIAComplaints@inforegulator.org.za">
             POPIAComplaints@inforegulator.org.za
           </a>
           .

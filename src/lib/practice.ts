@@ -18,19 +18,23 @@ export const doctor = {
   ],
   role: 'General Practitioner',
   hpcsaNumber: 'MP 1012347',
-  hpcsaLookup: 'https://hpcsaonline.custhelp.com/app/iregister',
+  hpcsaLookup: 'https://hpcsaonline.custhelp.com/app/i_reg_form',
   practiceNumber: '1345028',
   opened: 'June 2026',
 };
+
+const WA_NUMBER = '27716700634';
+
+/** Build a wa.me link with a prefilled message. Line breaks are allowed. */
+export const whatsappLink = (message: string) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 
 export const contact = {
   phoneDisplay: '071 670 0634',
   phoneE164: '+27716700634',
   tel: 'tel:+27716700634',
-  whatsapp:
-    'https://wa.me/27716700634?text=' +
-    encodeURIComponent('Hello Dr Tshayingwe, I would like to make an appointment.'),
-  whatsappPlain: 'https://wa.me/27716700634',
+  whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to make an appointment.\nName:\nWhat I need:'),
+  whatsappVirtual: whatsappLink('Hello Dr Tshayingwe, I would like a virtual consultation (video or phone call).\nName:\nWhat I need:'),
+  whatsappPlain: `https://wa.me/${WA_NUMBER}`,
   email: 'drstshayingwe@gmail.com',
   mailto: 'mailto:drstshayingwe@gmail.com',
 };
@@ -94,6 +98,8 @@ export const slogan = 'Caring for you, every day.';
 export type ServiceGroup = {
   slug: string;
   title: string;
+  /** Location-bearing title used on the group's own page and in search results. */
+  seoTitle: string;
   icon: 'people' | 'heart' | 'testtube' | 'syringe' | 'child' | 'female' | 'male';
   summary: string;
   items: { name: string; detail?: string }[];
@@ -103,28 +109,32 @@ export const services: ServiceGroup[] = [
   {
     slug: 'general-care',
     title: 'General care',
+    seoTitle: 'GP consultations and medicals in Mbekweni, Paarl',
     icon: 'people',
     summary: 'Everyday medical care for adults and children, from a sore throat to a check-up before a new job.',
     items: [
       { name: 'Medical consultations', detail: 'Diagnosis and treatment of acute illness, with sick notes and referral letters when needed.' },
       { name: 'Wellness screenings', detail: 'Blood pressure, blood sugar, weight and general health checks.' },
       { name: 'PDP and medical assessments', detail: 'Medical examinations for professional driving permits and other fitness certificates.' },
+      { name: 'Drips and injections', detail: 'Intravenous fluids or medicines given at the practice when you need them, for example for dehydration, so that you can be treated without going to hospital.' },
     ],
   },
   {
     slug: 'chronic-disease-care',
     title: 'Chronic disease care',
+    seoTitle: 'Hypertension, diabetes and asthma care in Mbekweni, Paarl',
     icon: 'heart',
     summary: 'Ongoing care and repeat prescriptions for long-term conditions, with regular monitoring.',
     items: [
       { name: 'Hypertension', detail: 'Blood pressure control, medication review and lifestyle support.' },
-      { name: 'Diabetes', detail: 'Blood sugar monitoring, medication and foot and eye care reminders.' },
+      { name: 'Diabetes', detail: 'Blood sugar monitoring, medication review and regular foot checks, with referral for eye screening when needed.' },
       { name: 'Asthma', detail: 'Inhaler technique, control plans and treatment of flare-ups.' },
     ],
   },
   {
     slug: 'prevention-and-testing',
     title: 'Prevention and testing',
+    seoTitle: 'HIV testing and family planning in Mbekweni, Paarl',
     icon: 'testtube',
     summary: 'Confidential testing and advice so problems are found early or avoided altogether.',
     items: [
@@ -135,23 +145,28 @@ export const services: ServiceGroup[] = [
   {
     slug: 'minor-surgical-procedures',
     title: 'Minor surgical procedures',
+    seoTitle: 'Minor surgical procedures and circumcision in Mbekweni, Paarl',
     icon: 'syringe',
-    summary: 'Small procedures done in the practice under local anaesthetic, without a hospital visit.',
+    summary: 'Small procedures done here at the practice, so you do not need to go to hospital for them.',
     items: [
-      { name: 'Lumps and bumps removal' },
-      { name: 'IV therapy' },
-      { name: 'Wound care and suturing' },
-      { name: 'Abscess drainage' },
-      { name: 'Medical circumcision' },
+      { name: 'Lumps and bumps removal', detail: 'Removal of small skin lumps under local anaesthetic.' },
+      { name: 'Wound care and suturing (stitches)', detail: 'Cleaning, dressing and stitching of cuts and wounds, and removal of stitches.' },
+      { name: 'Abscess (boil) drainage', detail: 'Drainage of abscesses under local anaesthetic.' },
+      {
+        name: 'Medical circumcision',
+        detail:
+          "Under local anaesthetic, for adults and boys aged 16 and over, with their own consent. Younger boys can be circumcised only for medical or religious reasons, as the Children's Act requires.",
+      },
     ],
   },
   {
-    slug: 'child-health',
-    title: "Child's health",
+    slug: 'childrens-health',
+    title: "Children's health",
+    seoTitle: "Children's doctor and immunisations in Mbekweni, Paarl",
     icon: 'child',
     summary: 'Care for babies and children, from routine check-ups to treatment when they are sick.',
     items: [
-      { name: 'Immunisations' },
+      { name: 'Immunisations', detail: 'Routine childhood vaccines according to the South African schedule, recorded in the Road to Health booklet.' },
       { name: 'Child wellness check-ups' },
       { name: 'Growth monitoring' },
       { name: 'Childhood illness treatment' },
@@ -160,10 +175,11 @@ export const services: ServiceGroup[] = [
   {
     slug: 'womens-health',
     title: "Women's health",
+    seoTitle: "Women's health and Pap smears in Mbekweni, Paarl",
     icon: 'female',
     summary: 'Screening and care in a private, respectful setting.',
     items: [
-      { name: 'Pap smears' },
+      { name: 'Pap smears', detail: 'Cervical cancer screening, with results explained to you.' },
       { name: 'Breast examination' },
       { name: 'Pregnancy testing' },
     ],
@@ -171,12 +187,13 @@ export const services: ServiceGroup[] = [
   {
     slug: 'mens-health',
     title: "Men's health",
+    seoTitle: "Men's health and STI treatment in Mbekweni, Paarl",
     icon: 'male',
     summary: 'Straightforward, confidential care for the things men often put off.',
     items: [
       { name: 'Prostate screening' },
       { name: 'Sexual health' },
-      { name: 'STI testing and treatment' },
+      { name: 'STI testing and treatment', detail: 'Confidential testing and treatment of sexually transmitted infections.' },
     ],
   },
 ];
@@ -191,14 +208,16 @@ export const virtualConsultation = {
     'Advice on whether you need to be seen in person',
   ],
   notFor: [
-    'Emergencies, chest pain, difficulty breathing or serious injuries',
     'Problems that need a physical examination, a procedure or an injection',
     'A first consultation for a chronic condition',
   ],
   steps: [
     { title: 'Message or call us', body: 'WhatsApp or phone 071 670 0634 during opening hours and ask for a virtual consultation.' },
     { title: 'Agree a time and pay', body: 'We confirm a time, the fee and how to pay before the call.' },
-    { title: 'Have your consultation', body: 'Dr Tshayingwe calls you by video or phone. Prescriptions and letters are sent to you afterwards.' },
+    {
+      title: 'Have your consultation',
+      body: 'Dr Tshayingwe calls you by video or phone. He first confirms who you are and where you are, and asks you to agree to a telehealth consultation and its limits. If a prescription, sick note or letter is appropriate, it is sent to you afterwards. Some medicines cannot be prescribed without an in-person examination.',
+    },
   ],
 };
 
@@ -233,12 +252,12 @@ export const toConfirm = {
 
 export const bio = {
   short:
-    'Dr Sivuyile Tshayingwe is a general practitioner who trained first in nursing (BCur, University of Fort Hare) and then in medicine (MBChB, Walter Sisulu University). He opened his practice in Mbekweni, Paarl in June 2026.',
+    'Dr Sivuyile Tshayingwe is a general practitioner who holds both a nursing degree (BCur, University of Fort Hare) and a medical degree (MBChB, Walter Sisulu University). He opened his practice in Mbekweni, Paarl in June 2026.',
   approach: [
-    'Unhurried consultations. You get the time to explain what is wrong and to understand what happens next.',
+    'Time to talk. You get the time to explain what is wrong and to understand what happens next.',
     'Plain language. Diagnoses, medicines and results are explained in words you can use.',
-    'Continuity. The same doctor sees you at every visit and keeps your record up to date.',
-    'Whole family. Children, adults and older patients are all seen at the practice.',
+    'The same doctor every time. Dr Tshayingwe sees you at every visit and keeps your record up to date.',
+    'The whole family. Children, adults and older patients are all seen at the practice.',
   ],
 };
 

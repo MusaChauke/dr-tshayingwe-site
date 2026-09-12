@@ -24,7 +24,10 @@ body {
 /* Room for the fixed action bar on phones */
 @media (max-width: 767px) {
   body {
-    padding-bottom: 4.75rem;
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+  }
+  html {
+    scroll-padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
   }
 }
 
@@ -43,9 +46,9 @@ p {
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline: 3px solid var(--navy);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff; /* inner white ring keeps the indicator visible on navy, charcoal and green */
 }
 
 /* One deliberate motion: the gold curve draws itself on first paint. */

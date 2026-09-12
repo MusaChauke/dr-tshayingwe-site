@@ -5,7 +5,7 @@ export const dynamic = 'force-static';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${doctor.shortName}, General Practitioner, Paarl`,
+    name: doctor.shortName,
     short_name: 'Dr Tshayingwe',
     description: 'General practitioner in Mbekweni, Paarl. Open 7 days a week.',
     start_url: '/',
