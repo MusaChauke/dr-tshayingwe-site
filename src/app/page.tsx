@@ -32,6 +32,7 @@ const chips = [
   'Sick notes',
   'Emergencies',
   'Home visits',
+  'Virtual consultations',
   'Medicines on site',
 ];
 
@@ -183,11 +184,14 @@ export default function HomePage() {
             />
             <div className="absolute inset-0 bg-navy/65" aria-hidden="true" />
             <div className="relative z-10 max-w-2xl px-6 py-16">
-              <h2 className="text-3xl text-white sm:text-5xl">Come in today, or have the doctor come to you.</h2>
+              <h2 className="text-3xl text-white sm:text-5xl">Come in today, consult from home, or have the doctor come to you.</h2>
               <p className="mt-4 text-lg text-white/90">{homeVisits.summary}</p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Pill href={contact.whatsapp} icon="whatsapp" tone="white">
                   WhatsApp us
+                </Pill>
+                <Pill href={contact.whatsappVirtual} icon="video" tone="ghost">
+                  Book a virtual consultation
                 </Pill>
                 <Pill href={homeVisits.whatsapp} icon="pin" tone="ghost">
                   Arrange a home visit
