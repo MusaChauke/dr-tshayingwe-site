@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Rebuild the site for the GitHub Pages preview and push it to the gh-pages branch.
-# Preview URL: https://musachauke.github.io/dr-tshayingwe-site/
+# Preview URL: https://musachauke.github.io/dr-tshayingwe-site/ (production: bash deploy-prod.sh, needs VERCEL_TOKEN in .env)
 set -euo pipefail
 cd "$(dirname "$0")"
 rm -rf out
