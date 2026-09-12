@@ -211,10 +211,7 @@ export const homeVisits = {
   area: 'Paarl',
   notice: 'at least one day in advance',
   summary: 'If you cannot get to the practice, Dr Tshayingwe can come to you. Home visits are available across Paarl and must be arranged at least one day in advance by WhatsApp or phone.',
-  whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to arrange a home visit.
-Name:
-Address:
-What I need:'),
+  whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to arrange a home visit.\nName:\nAddress:\nWhat I need:'),
 };
 
 /** Languages the doctor consults in, confirmed 2026-09-12. */
