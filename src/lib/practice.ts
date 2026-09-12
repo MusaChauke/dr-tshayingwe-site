@@ -114,6 +114,7 @@ export const services: ServiceGroup[] = [
     summary: 'Everyday medical care for adults and children, from a sore throat to a check-up before a new job.',
     items: [
       { name: 'Medical consultations', detail: 'Diagnosis and treatment of acute illness, with sick notes and referral letters when needed.' },
+      { name: 'Medical emergencies', detail: 'Seen during opening times. Come straight in, or call 071 670 0634 on the way. If hospital care is needed, we arrange the referral or the ambulance.' },
       { name: 'Wellness screenings', detail: 'Blood pressure, blood sugar, weight and general health checks.' },
       { name: 'PDP and medical assessments', detail: 'Medical examinations for professional driving permits and other fitness certificates.' },
       { name: 'Drips and injections', detail: 'Intravenous fluids or medicines given at the practice when you need them, for example for dehydration, so that you can be treated without going to hospital.' },
@@ -208,6 +209,7 @@ export const virtualConsultation = {
     'Advice on whether you need to be seen in person',
   ],
   notFor: [
+    'Emergencies and injuries: come straight to the practice during opening times',
     'Problems that need a physical examination, a procedure or an injection',
     'A first consultation for a chronic condition',
   ],

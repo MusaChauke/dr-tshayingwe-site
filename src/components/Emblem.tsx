@@ -1,8 +1,9 @@
 /**
- * The practice emblem, redrawn as vector from the physical sign:
- * gold ring, navy medical cross, two gold figures with raised arms,
- * navy cupped hands holding them. Approved artwork should replace this
- * once a vector master exists.
+ * The practice emblem, redrawn as vector from the brand mockup:
+ * gold ring, red medical cross, two navy figures with raised arms,
+ * a smaller child figure, gold cupped hands holding them.
+ * Replace with the vectorised master once ChatGPT/Illustrator produces it
+ * (see Downloads\Dr S Tshayingwe Practice\Brand\Logo & Brand Prompts.md).
  */
 export default function Emblem({
   className = 'h-12 w-12',
@@ -22,40 +23,25 @@ export default function Emblem({
       aria-label={decorative ? undefined : title}
       focusable="false"
     >
-      <circle cx="50" cy="50" r="46" fill="#fff" stroke="#C9A227" strokeWidth="6" />
-      {/* cross */}
-      <rect x="45" y="19" width="10" height="28" rx="1.5" fill="#1B2A4A" />
-      <rect x="36" y="28" width="28" height="10" rx="1.5" fill="#1B2A4A" />
-      {/* left figure */}
-      <circle cx="26" cy="35" r="5" fill="#C9A227" />
-      <path
-        d="M26 59 V47 M26 47 L18 39 M26 47 L34 40"
-        stroke="#C9A227"
-        strokeWidth="5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* right figure */}
-      <circle cx="74" cy="35" r="5" fill="#C9A227" />
-      <path
-        d="M74 59 V47 M74 47 L82 39 M74 47 L66 40"
-        stroke="#C9A227"
-        strokeWidth="5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* cupped hands */}
-      <path
-        d="M15 55 C19 77 37 84 50 84 C63 84 81 77 85 55 C79 65 66 71 50 71 C34 71 21 65 15 55 Z"
-        fill="#1B2A4A"
-      />
-      <path
-        d="M21 52 c3 -3 7 -2 9 2 M79 52 c-3 -3 -7 -2 -9 2"
-        stroke="#1B2A4A"
-        strokeWidth="4"
-        strokeLinecap="round"
-        fill="none"
-      />
+      <circle cx="50" cy="50" r="46" fill="#fff" stroke="#C9A227" strokeWidth="7" />
+      {/* red cross */}
+      <rect x="45" y="15" width="10" height="28" rx="1.5" fill="#D42B2B" />
+      <rect x="36" y="24" width="28" height="10" rx="1.5" fill="#D42B2B" />
+      {/* left adult */}
+      <circle cx="27" cy="36" r="5" fill="#1B2A4A" />
+      <path d="M21 44 H33 L29.5 66 H24.5 Z" fill="#1B2A4A" />
+      <path d="M27 46 L18 34 M27 46 L36 34" stroke="#1B2A4A" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+      {/* right adult */}
+      <circle cx="73" cy="36" r="5" fill="#1B2A4A" />
+      <path d="M67 44 H79 L75.5 66 H70.5 Z" fill="#1B2A4A" />
+      <path d="M73 46 L64 34 M73 46 L82 34" stroke="#1B2A4A" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+      {/* child */}
+      <circle cx="50" cy="48" r="3.6" fill="#1B2A4A" />
+      <path d="M46 53 H54 L52.5 65 H47.5 Z" fill="#1B2A4A" />
+      <path d="M50 54 L45 49 M50 54 L55 49" stroke="#1B2A4A" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+      {/* gold cupped hands */}
+      <path d="M15 58 C19 78 37 86 50 86 C63 86 81 78 85 58 C79 68 66 73 50 73 C34 73 21 68 15 58 Z" fill="#C9A227" />
+      <path d="M19 56 c3 -4 8 -3 10 1 M81 56 c-3 -4 -8 -3 -10 1" stroke="#C9A227" strokeWidth="4" strokeLinecap="round" fill="none" />
     </svg>
   );
 }

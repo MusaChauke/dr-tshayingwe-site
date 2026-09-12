@@ -39,7 +39,7 @@ export function siteSchema() {
         '@id': CLINIC_ID,
         name: doctor.shortName,
         alternateName: [doctor.fullName, `${doctor.shortName} General Practitioner`],
-        description: `${tagline} General practitioner in Mbekweni, Paarl: consultations, chronic disease care, child and family health, minor procedures, HIV testing, women's and men's health, and virtual consultations. Open seven days a week.`,
+        description: `${tagline} General practitioner in Mbekweni, Paarl: consultations, chronic disease care, child and family health, minor procedures, HIV testing, women's and men's health, and virtual consultations. Medical emergencies seen during opening times. Open seven days a week.`,
         url: `${SITE_URL}/`,
         telephone: contact.phoneE164,
         email: contact.email,

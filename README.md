@@ -41,5 +41,5 @@ Source photos and the print-collateral prompts are in `Downloads\Dr S Tshayingwe
 
 - Copy is factual and avoids comparative or promotional claims (HPCSA ethical rules 3 and 4).
 - No patient testimonials on the site.
-- Emergency numbers (10177, 112, Paarl Hospital) appear on every page that describes services.
+- The practice sees medical emergencies during opening times; every service page says so and gives 10177 / 112 / Paarl Hospital for after hours and ambulances.
 - The Google Map is loaded only after the visitor presses "Show map"; the site sets no cookies (POPIA).

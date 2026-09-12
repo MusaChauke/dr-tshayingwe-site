@@ -34,16 +34,17 @@ export default function VirtualPage() {
           </div>
         </div>
 
-        <p className="mt-8 max-w-3xl rounded-lg border-l-4 border-red-700 bg-red-50 p-4 font-bold text-red-950">
-          In an emergency (chest pain, difficulty breathing, a serious injury or a very sick child) do not book a call: phone{' '}
-          <a className="underline" href={emergency.ambulance.tel}>
+        <p className="mt-8 max-w-3xl rounded-lg border-l-4 border-gold bg-cream p-4 font-bold text-navy">
+          In an emergency (chest pain, difficulty breathing, a serious injury or a very sick child) do not book a call. Come
+          straight to the practice during opening times. If the practice is closed or someone&rsquo;s life is in danger, phone{' '}
+          <a className="underline decoration-gold-deep underline-offset-4" href={emergency.ambulance.tel}>
             {emergency.ambulance.number}
-          </a>
-          , or{' '}
-          <a className="underline" href={emergency.cell.tel}>
+          </a>{' '}
+          for an ambulance or{' '}
+          <a className="underline decoration-gold-deep underline-offset-4" href={emergency.cell.tel}>
             {emergency.cell.number}
           </a>{' '}
-          from a cell phone, straight away.
+          from a cell phone.
         </p>
 
         <h2 className="mt-12 text-3xl">How it works</h2>
