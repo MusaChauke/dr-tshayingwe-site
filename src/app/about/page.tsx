@@ -13,6 +13,8 @@ export const metadata = pageMeta(
   `${doctor.fullName}, ${doctor.qualifications}, HPCSA ${doctor.hpcsaNumber}. General practitioner in Mbekweni, Paarl since ${doctor.opened}. Meet the doctor and see the practice.`,
 );
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const gallery = [
   { name: 'waiting-room', alt: 'The waiting room: a navy sofa, coffee table and the practice banner against green walls', w: 1600, h: 1203, caption: 'The waiting room' },
   { name: 'consulting-room', alt: 'The consulting room with an examination bed and desk', w: 1200, h: 1502, caption: 'The consulting room' },
@@ -38,6 +40,14 @@ export default function AboutPage() {
               priority
               sizes="(min-width: 768px) 40vw, 100vw"
               className="w-full rounded-card object-cover"
+            />
+            <img
+              src={`${BASE}/brand/lockup-stacked.png`}
+              alt="Dr. S Tshayingwe, MBChB (WSU), BCur (UFH), General Practitioner"
+              width={1000}
+              height={1110}
+              decoding="async"
+              className="mx-auto mt-6 w-56"
             />
           </div>
           <div className="md:col-span-7">
