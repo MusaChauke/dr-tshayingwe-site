@@ -25,15 +25,16 @@ npx next build     # static site in out/
 Live preview, not indexed by search engines: https://musachauke.github.io/dr-tshayingwe-site/
 Redeploy after changes with `bash deploy-preview.sh` (builds with the `/dr-tshayingwe-site` base path and pushes `out/` to the `gh-pages` branch).
 
-## Deploy (Vercel)
+## Deploy (Vercel, HealthHalo team)
 
-```bash
-vercel login
-vercel --prod
-```
+Production hostname: `https://drtshayingwe.healthhalo.co.za` (a subdomain of HealthHalo's domain; DNS at Xneelo).
 
-Framework preset Next.js; build command `next build`; output directory `out`. Add the domain in the Vercel
-project, then create the DNS records it shows at the registrar.
+1. Copy `.env.example` to `.env` and paste a Vercel token (Account > Tokens, scoped to the HealthHalo team).
+2. `bash deploy-prod.sh` builds and deploys; the first run creates the project `dr-tshayingwe-site`.
+3. Once: `npx vercel domains add drtshayingwe.healthhalo.co.za dr-tshayingwe-site --token $VERCEL_TOKEN --scope $VERCEL_ORG_ID`,
+   then at Xneelo add `CNAME drtshayingwe -> cname.vercel-dns.com`.
+
+Any static host also works: upload the contents of `out/`.
 
 Any static host also works: upload the contents of `out/`.
 
