@@ -33,6 +33,7 @@ export const contact = {
   phoneE164: '+27716700634',
   tel: 'tel:+27716700634',
   whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to make an appointment.\nName:\nWhat I need:'),
+  whatsappVirtual: whatsappLink('Hello Dr Tshayingwe, I would like a virtual consultation (video or phone call).' + String.fromCharCode(10) + 'Name:' + String.fromCharCode(10) + 'What I need:'),
   whatsappPlain: `https://wa.me/${WA_NUMBER}`,
   email: 'drstshayingwe@gmail.com',
   mailto: 'mailto:drstshayingwe@gmail.com',
@@ -119,6 +120,7 @@ export const services: ServiceGroup[] = [
       { name: 'Drips and injections', detail: 'Intravenous fluids or medicines given at the practice when you need them, for example for dehydration, so that you can be treated without going to hospital.' },
       { name: 'Medicines dispensed on site', detail: 'Dr Tshayingwe holds a dispensing licence, so where possible the medicines you are prescribed are dispensed at the practice and you leave with them in hand.' },
       { name: 'Home visits', detail: 'Across Paarl, for patients who cannot get to the practice. Please arrange at least one day in advance by WhatsApp or phone.' },
+      { name: 'Virtual consultations', detail: 'By video call or telephone during opening hours, for follow-ups, repeat prescriptions, results and minor illnesses that do not need an examination. Arrange by WhatsApp; the fee is confirmed before the call. Not for emergencies.' },
     ],
   },
   {
@@ -206,11 +208,11 @@ export const emergency = {
   hospital: { label: 'Paarl Hospital', number: '021 860 2500', tel: 'tel:+27218602500' },
 };
 
-/** Home visits, confirmed by the doctor on 2026-09-12. All consultations are in person (no telehealth for now). */
+/** Home visits, confirmed by the doctor on 2026-09-12. Virtual consultations added back on the same day. */
 export const homeVisits = {
   area: 'Paarl',
   notice: 'at least one day in advance',
-  summary: 'If you cannot get to the practice, Dr Tshayingwe can come to you. Home visits are available across Paarl and must be arranged at least one day in advance by WhatsApp or phone.',
+  summary: 'If you cannot get to the practice, Dr Tshayingwe can consult with you by video or phone during opening hours, or come to you. Home visits are available across Paarl and must be arranged at least one day in advance by WhatsApp or phone.',
   whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to arrange a home visit.\nName:\nAddress:\nWhat I need:'),
 };
 
