@@ -63,7 +63,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero: full-bleed photo; the rest of the page slides over it */}
-      <section className="sticky top-0 z-0 h-[100svh] min-h-[600px] overflow-hidden bg-navy">
+      <section className="relative z-0 flex min-h-[85svh] flex-col overflow-hidden bg-navy md:sticky md:top-0 md:h-[100svh] md:min-h-[600px]">
         <Photo
           name="entrance"
           alt={`${doctor.fullName} standing at the entrance of the practice at ${address.street}, ${address.suburb}, under the practice sign`}
@@ -74,16 +74,16 @@ export default function HomePage() {
           className="hero-photo absolute inset-0 h-full w-full object-cover object-[50%_35%]"
         />
         <div className="absolute inset-0 bg-hero-veil" aria-hidden="true" />
-        <div className="relative z-10 mx-auto flex h-full max-w-site flex-col items-center justify-end px-4 pb-24 pt-32 text-center text-white sm:px-6 md:justify-center md:pb-16">
+        <div className="hero-text relative z-10 mx-auto flex w-full max-w-site flex-1 flex-col items-center justify-center px-4 pb-20 pt-12 text-center text-white sm:px-6 md:justify-center md:pb-16 md:pt-32">
           <p lang="xh" className="font-serif text-2xl italic text-white/90 sm:text-3xl">
             Molweni, namkelekile.
           </p>
-          <h1 className="mt-4 max-w-4xl text-[2.75rem] font-medium leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-[2.4rem] font-medium leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-7xl">
             Your family doctor in Mbekweni, Paarl.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/90 sm:text-xl">
-            {doctor.fullName}, {doctor.qualifications}. A GP for adults, children and older patients, open seven days a week,
-            including public holidays. Consultations in isiXhosa, English and Afrikaans.
+            {doctor.fullName}, {doctor.qualifications}. Open seven days a week, including public holidays. Consultations in
+            isiXhosa and English.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Pill href={contact.whatsapp} icon="whatsapp" tone="white">

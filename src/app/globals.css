@@ -89,6 +89,12 @@ summary:focus-visible {
   transform: none;
 }
 
+/* Hero text: a soft shadow so it reads over any part of the photo */
+.hero-text h1,
+.hero-text p {
+  text-shadow: 0 2px 18px rgba(10, 20, 45, 0.6);
+}
+
 /* Hero photo settles in slightly on load */
 .hero-photo {
   animation: hero-settle 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
