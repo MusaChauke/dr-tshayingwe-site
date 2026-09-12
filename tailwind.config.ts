@@ -5,12 +5,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: { DEFAULT: '#1B2A4A', deep: '#12203A', mid: '#2C3F6B', light: '#3B4F7D', soft: '#33405A' },
-        gold: { DEFAULT: '#C9A227', deep: '#8F7115', soft: '#EBDFB3', pale: '#F7F1DC' },
+        navy: { DEFAULT: '#162751', deep: '#0F1B3A', mid: '#23396F', light: '#33497F', soft: '#2F3D5E' },
+        gold: { DEFAULT: '#C09220', deep: '#8A6816', soft: '#EADFB5', pale: '#F7F1DC' },
         cream: '#F5F2EC',
         charcoal: '#2A2A2A',
         ink: '#1F2937',
-        cross: '#D42B2B',
+        cross: '#D41C22',
         // WhatsApp brand greens: the darker one keeps white text readable.
         wa: { DEFAULT: '#0E6F64', bright: '#25D366', deep: '#0A5C53' },
       },
@@ -23,8 +23,8 @@ const config: Config = {
         'card-lg': '2.25rem',
       },
       backgroundImage: {
-        'navy-gradient': 'linear-gradient(160deg, #1B2A4A 0%, #2C3F6B 55%, #3B4F7D 100%)',
-        'hero-veil': 'linear-gradient(180deg, rgba(27,42,74,0.6) 0%, rgba(27,42,74,0.42) 40%, rgba(27,42,74,0.55) 70%, rgba(27,42,74,0.9) 100%)',
+        'navy-gradient': 'linear-gradient(160deg, #162751 0%, #23396F 55%, #33497F 100%)',
+        'hero-veil': 'linear-gradient(180deg, rgba(22,39,81,0.6) 0%, rgba(22,39,81,0.42) 40%, rgba(22,39,81,0.55) 70%, rgba(22,39,81,0.9) 100%)',
       },
       maxWidth: { site: '76rem' },
       transitionTimingFunction: {

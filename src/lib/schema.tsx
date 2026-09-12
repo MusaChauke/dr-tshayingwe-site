@@ -45,7 +45,7 @@ export function siteSchema() {
         telephone: contact.phoneE164,
         email: contact.email,
         image: [`${SITE_URL}/photos/entrance.jpg`, `${SITE_URL}/photos/doctor-portrait.jpg`, `${SITE_URL}/photos/waiting-room.jpg`],
-        logo: `${SITE_URL}/icon.svg`,
+        logo: `${SITE_URL}/brand/emblem-1024.png`,
         address: {
           '@type': 'PostalAddress',
           streetAddress: `${address.street}, ${address.suburb}`,

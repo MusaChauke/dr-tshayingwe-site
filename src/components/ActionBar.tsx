@@ -6,7 +6,7 @@ export default function ActionBar() {
   return (
     <nav
       aria-label="Quick actions"
-      className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-gold/40 bg-white shadow-[0_-4px_16px_rgba(27,42,74,0.12)] md:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-gold/40 bg-white shadow-[0_-4px_16px_rgba(22,39,81,0.12)] md:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <a href={contact.tel} className="flex min-h-[3.75rem] flex-col items-center justify-center gap-0.5 bg-navy text-xs font-bold text-white">
