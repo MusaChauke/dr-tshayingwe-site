@@ -1,4 +1,6 @@
 /** Practice photo with WebP + JPEG sources. Files live in /public/photos. */
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export default function Photo({
   name,
   alt,
@@ -18,9 +20,9 @@ export default function Photo({
 }) {
   return (
     <picture>
-      <source srcSet={`/photos/${name}.webp`} type="image/webp" sizes={sizes} />
+      <source srcSet={`${BASE}/photos/${name}.webp`} type="image/webp" sizes={sizes} />
       <img
-        src={`/photos/${name}.jpg`}
+        src={`${BASE}/photos/${name}.jpg`}
         alt={alt}
         width={width}
         height={height}
