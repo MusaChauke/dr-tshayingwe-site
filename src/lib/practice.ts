@@ -4,8 +4,8 @@
  * hidden from the rendered site until `confirmed` is set to true.
  */
 
-// Own domain (decision 2026-09-12). Override with NEXT_PUBLIC_SITE_URL if it ever moves.
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.drtshayingwe.co.za';
+// Live at the free Vercel address (2026-09-12). If a domain is bought later, set NEXT_PUBLIC_SITE_URL on the Vercel project and redeploy.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://drtshayingwe.vercel.app';
 
 export const doctor = {
   fullName: 'Dr Sivuyile Tshayingwe',
