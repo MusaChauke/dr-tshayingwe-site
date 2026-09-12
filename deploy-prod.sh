@@ -8,4 +8,6 @@ set -a; . ./.env; set +a
 rm -rf out .vercel/output
 npx next build
 npx vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID" --name dr-tshayingwe-site
-echo "Deployed. Add the domain once: npx vercel domains add ${NEXT_PUBLIC_SITE_URL#https://} dr-tshayingwe-site --token \$VERCEL_TOKEN --scope \$VERCEL_ORG_ID"
+echo "Deployed. Add the domains once:"
+echo "  npx vercel domains add www.drtshayingwe.co.za dr-tshayingwe-site --token \$VERCEL_TOKEN --scope \$VERCEL_ORG_ID"
+echo "  npx vercel domains add drtshayingwe.co.za dr-tshayingwe-site --token \$VERCEL_TOKEN --scope \$VERCEL_ORG_ID   (redirects to www)"

@@ -4,8 +4,8 @@
  * hidden from the rendered site until `confirmed` is set to true.
  */
 
-// Hosted as a subdomain of HealthHalo's domain (decision 2026-09-12). Override with NEXT_PUBLIC_SITE_URL if it ever moves.
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://drtshayingwe.healthhalo.co.za';
+// Own domain (decision 2026-09-12). Override with NEXT_PUBLIC_SITE_URL if it ever moves.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.drtshayingwe.co.za';
 
 export const doctor = {
   fullName: 'Dr Sivuyile Tshayingwe',
