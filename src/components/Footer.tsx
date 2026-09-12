@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Caduceus from './Caduceus';
-import Emblem from './Emblem';
 import Icon from './Icon';
 import { address, contact, doctor, hours, slogan } from '@/lib/practice';
 
@@ -18,6 +17,7 @@ function Row({ icon, label, children }: { icon: Parameters<typeof Icon>[0]['name
   );
 }
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
 const link = 'underline decoration-gold/70 underline-offset-4 hover:decoration-gold';
 
 export default function Footer() {
@@ -27,9 +27,7 @@ export default function Footer() {
         <div className="grid gap-8 px-6 py-12 sm:px-10 md:grid-cols-3 lg:px-14">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                <Emblem className="h-10 w-10" decorative />
-              </span>
+              <img src={`${BASE}/brand/emblem-reversed.png`} alt="" aria-hidden="true" width={512} height={522} decoding="async" className="h-12 w-12" />
               <span className="font-serif text-2xl">{doctor.shortName}</span>
             </div>
             <Row icon="phone" label="Cellphone">
@@ -72,7 +70,7 @@ export default function Footer() {
         <div className="border-t border-white/10">
           <div className="flex flex-col items-start gap-4 px-6 py-6 text-sm text-white/80 sm:px-10 md:flex-row md:items-center md:justify-between lg:px-14">
             <div className="flex items-center gap-3">
-              <Caduceus className="h-9 w-6" />
+              <Caduceus className="h-9 w-9" />
               <span className="font-serif text-xl text-gold">{slogan}</span>
             </div>
             <div>
