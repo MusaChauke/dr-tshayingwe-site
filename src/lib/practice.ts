@@ -118,6 +118,8 @@ export const services: ServiceGroup[] = [
       { name: 'Wellness screenings', detail: 'Blood pressure, blood sugar, weight and general health checks.' },
       { name: 'PDP and medical assessments', detail: 'Medical examinations for professional driving permits and other fitness certificates.' },
       { name: 'Drips and injections', detail: 'Intravenous fluids or medicines given at the practice when you need them, for example for dehydration, so that you can be treated without going to hospital.' },
+      { name: 'Medicines dispensed on site', detail: 'Where possible, the medicines you are prescribed are dispensed at the practice, so you leave with them in hand.' },
+      { name: 'Home visits', detail: 'Across Paarl, for patients who cannot get to the practice. Please arrange at least one day in advance by WhatsApp or phone.' },
     ],
   },
   {
@@ -210,7 +212,7 @@ export const virtualConsultation = {
   ],
   notFor: [
     'Emergencies and injuries: come straight to the practice during opening times',
-    'Problems that need a physical examination, a procedure or an injection',
+    'Problems that need a physical examination, a procedure or an injection (a home visit across Paarl can be arranged a day ahead if you cannot travel)',
     'A first consultation for a chronic condition',
   ],
   steps: [
@@ -229,32 +231,45 @@ export const emergency = {
   hospital: { label: 'Paarl Hospital', number: '021 860 2500', tel: 'tel:+27218602500' },
 };
 
+/** Home visits, confirmed by the doctor on 2026-09-12. */
+export const homeVisits = {
+  area: 'Paarl',
+  notice: 'at least one day in advance',
+  summary: 'Home visits are available across Paarl for patients who cannot get to the practice. Please arrange at least one day in advance.',
+};
+
+/** Languages the doctor consults in, confirmed 2026-09-12. */
+export const languages = ['English', 'isiXhosa', 'Afrikaans'];
+
+/** Payment options, confirmed 2026-09-12. Card payments run through an iKhokha machine. */
+export const payments = ['Medical aid', 'Card (debit or credit)', 'Cash'];
+
 /**
- * Facts the doctor still needs to confirm before they are shown on the site.
- * Set `confirmed: true` once he has signed off on the exact wording.
+ * Facts the doctor confirms before they are shown on the site.
+ * `confirmed: true` means he has signed off on the wording (answers received 2026-09-12).
  */
 export const toConfirm = {
   languages: {
-    confirmed: false,
-    text: 'Consultations in isiXhosa and English.',
+    confirmed: true,
+    text: 'Consultations in isiXhosa, English and Afrikaans.',
   },
   medicalAid: {
-    confirmed: false,
-    text: 'Medical aid and private (cash) patients are welcome. Please tell us your scheme when you book so we can confirm how your claim works.',
+    confirmed: true,
+    text: 'We accept medical aid, card (debit or credit) and cash. Please bring your medical aid card and tell us your scheme when you book so we can confirm how your claim works.',
   },
   fees: {
     confirmed: false,
     text: 'Ask about consultation fees when you call or message us.',
   },
   bioExtra: {
-    confirmed: false,
-    text: '',
+    confirmed: true,
+    text: 'Dr Tshayingwe opened this practice with a simple conviction: quality healthcare should be within reach of every South African, not only those who can travel far or afford a private hospital. He wanted a doctor’s rooms in the community itself, where you are greeted in your own language, given the time to explain what is wrong, and treated as a person rather than a number. Whether you walk in from down the street or he comes to your home, his aim is the same: honest, careful and compassionate care for you and your family, close to where you live.',
   },
 };
 
 export const bio = {
   short:
-    'Dr Sivuyile Tshayingwe is a general practitioner who holds both a nursing degree (BCur, University of Fort Hare) and a medical degree (MBChB, Walter Sisulu University). He opened his practice in Mbekweni, Paarl in June 2026.',
+    'Dr Sivuyile Tshayingwe is a general practitioner who holds both a nursing degree (BCur, University of Fort Hare) and a medical degree (MBChB, Walter Sisulu University). He opened his practice in Mbekweni, Paarl in June 2026, and consults in isiXhosa, English and Afrikaans.',
   approach: [
     'Time to talk. You get the time to explain what is wrong and to understand what happens next.',
     'Plain language. Diagnoses, medicines and results are explained in words you can use.',

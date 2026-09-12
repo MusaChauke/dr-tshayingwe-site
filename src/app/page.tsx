@@ -12,7 +12,7 @@ import Photo from '@/components/Photo';
 import Pill from '@/components/Pill';
 import Reveal from '@/components/Reveal';
 import ServicesAccordion from '@/components/ServicesAccordion';
-import { address, bio, contact, doctor, services, toConfirm, virtualConsultation } from '@/lib/practice';
+import { address, bio, contact, doctor, homeVisits, services, toConfirm, virtualConsultation } from '@/lib/practice';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -31,6 +31,8 @@ const chips = [
   'Family planning',
   'Sick notes',
   'Emergencies',
+  'Home visits',
+  'Medicines on site',
 ];
 
 function Stat({ value, suffix = '', label, note }: { value: number; suffix?: string; label: string; note: string }) {
@@ -81,7 +83,7 @@ export default function HomePage() {
           </h1>
           <p className="mt-6 max-w-xl text-lg text-white/90 sm:text-xl">
             {doctor.fullName}, {doctor.qualifications}. A GP for adults, children and older patients, open seven days a week,
-            including public holidays.
+            including public holidays. Consultations in isiXhosa, English and Afrikaans.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Pill href={contact.whatsapp} icon="whatsapp" tone="white">
@@ -181,8 +183,10 @@ export default function HomePage() {
             />
             <div className="absolute inset-0 bg-navy/65" aria-hidden="true" />
             <div className="relative z-10 max-w-2xl px-6 py-16">
-              <h2 className="text-3xl text-white sm:text-5xl">Come in today, or consult from home.</h2>
-              <p className="mt-4 text-lg text-white/90">{virtualConsultation.summary}</p>
+              <h2 className="text-3xl text-white sm:text-5xl">Come in today, consult from home, or have the doctor come to you.</h2>
+              <p className="mt-4 text-lg text-white/90">
+                {virtualConsultation.summary} {homeVisits.summary}
+              </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Pill href={contact.whatsapp} icon="whatsapp" tone="white">
                   WhatsApp us
