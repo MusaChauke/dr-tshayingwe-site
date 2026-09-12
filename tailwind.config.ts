@@ -24,7 +24,7 @@ const config: Config = {
       },
       backgroundImage: {
         'navy-gradient': 'linear-gradient(160deg, #162751 0%, #23396F 55%, #33497F 100%)',
-        'hero-veil': 'linear-gradient(180deg, rgba(22,39,81,0.6) 0%, rgba(22,39,81,0.42) 40%, rgba(22,39,81,0.55) 70%, rgba(22,39,81,0.9) 100%)',
+        'hero-veil': 'linear-gradient(180deg, rgba(22,39,81,0.72) 0%, rgba(22,39,81,0.62) 45%, rgba(22,39,81,0.78) 75%, rgba(22,39,81,0.95) 100%)',
       },
       maxWidth: { site: '76rem' },
       transitionTimingFunction: {

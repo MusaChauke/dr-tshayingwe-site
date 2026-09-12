@@ -15,7 +15,7 @@ export default function Header() {
   const overlay = pathname === '/';
 
   const shell = overlay
-    ? 'absolute inset-x-0 top-0 z-30 text-white'
+    ? 'relative z-30 bg-navy text-white md:absolute md:inset-x-0 md:top-0 md:bg-transparent'
     : 'sticky top-0 z-30 border-b border-navy/10 bg-cream/85 text-navy backdrop-blur';
   const link = overlay ? 'text-white/90 hover:text-white' : 'text-navy hover:text-navy-deep';
 

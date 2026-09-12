@@ -215,7 +215,7 @@ export const homeVisits = {
 };
 
 /** Languages the doctor consults in, confirmed 2026-09-12. */
-export const languages = ['English', 'isiXhosa', 'Afrikaans'];
+export const languages = ['English', 'isiXhosa'];
 
 /** Payment options, confirmed 2026-09-12. Card payments run through an iKhokha machine. */
 export const payments = ['Medical aid', 'Card (debit or credit)', 'Cash'];
@@ -227,7 +227,7 @@ export const payments = ['Medical aid', 'Card (debit or credit)', 'Cash'];
 export const toConfirm = {
   languages: {
     confirmed: true,
-    text: 'Consultations in isiXhosa, English and Afrikaans.',
+    text: 'Consultations in isiXhosa and English.',
   },
   medicalAid: {
     confirmed: true,
@@ -245,7 +245,7 @@ export const toConfirm = {
 
 export const bio = {
   short:
-    'Dr Sivuyile Tshayingwe is a general practitioner who holds both a nursing degree (BCur, University of Fort Hare) and a medical degree (MBChB, Walter Sisulu University). He opened his practice in Mbekweni, Paarl in June 2026, and consults in isiXhosa, English and Afrikaans.',
+    'Dr Sivuyile Tshayingwe is a general practitioner who holds both a nursing degree (BCur, University of Fort Hare) and a medical degree (MBChB, Walter Sisulu University). He opened his practice in Mbekweni, Paarl in June 2026, and consults in isiXhosa and English.',
   approach: [
     'Time to talk. You get the time to explain what is wrong and to understand what happens next.',
     'Plain language. Diagnoses, medicines and results are explained in words you can use.',
