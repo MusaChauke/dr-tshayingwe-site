@@ -1,228 +1,231 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import CountUp from '@/components/CountUp';
 import CtaButtons from '@/components/CtaButtons';
 import EmergencyNotice from '@/components/EmergencyNotice';
+import Gallery from '@/components/Gallery';
 import HoursTable from '@/components/HoursTable';
 import Icon from '@/components/Icon';
 import MapCard from '@/components/MapCard';
 import OpenNow from '@/components/OpenNow';
-import PhoneText from '@/components/PhoneText';
 import Photo from '@/components/Photo';
-import ServiceList from '@/components/ServiceList';
-import { address, bio, contact, doctor, toConfirm, virtualConsultation } from '@/lib/practice';
+import Pill from '@/components/Pill';
+import Reveal from '@/components/Reveal';
+import ServicesAccordion from '@/components/ServicesAccordion';
+import { address, bio, contact, doctor, services, toConfirm, virtualConsultation } from '@/lib/practice';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-function Fact({ icon, label, value }: { icon: Parameters<typeof Icon>[0]['name']; label: string; value: React.ReactNode }) {
+const serviceCount = services.reduce((n, g) => n + g.items.length, 0);
+const chips = [
+  'Hypertension',
+  'Diabetes',
+  'HIV testing',
+  'Immunisations',
+  'Pap smears',
+  'PDP medicals',
+  'Circumcision',
+  'Wound care',
+  'Family planning',
+  'Sick notes',
+  'Emergencies',
+];
+
+function Stat({ value, suffix = '', label, note }: { value: number; suffix?: string; label: string; note: string }) {
   return (
-    <li className="flex items-center gap-3">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-gold text-gold" aria-hidden="true">
-        <Icon name={icon} className="h-6 w-6" />
-      </span>
-      <span>
-        <span className="block text-sm font-bold text-gold">{label}</span>
-        <span className="block leading-snug text-white">{value}</span>
-      </span>
-    </li>
+    <div>
+      <dt className="text-5xl font-medium tracking-tight text-navy sm:text-6xl">
+        <CountUp to={value} suffix={suffix} />
+      </dt>
+      <dd className="mt-2 font-semibold text-navy">{label}</dd>
+      <dd className="text-sm text-navy-soft">{note}</dd>
+    </div>
   );
 }
 
-const arrowLink = 'inline-flex items-center gap-2 font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4';
+function Label({ children, caption, light = false }: { children: React.ReactNode; caption?: string; light?: boolean }) {
+  return (
+    <div>
+      <span className={`label ${light ? 'text-white' : ''}`}>{children}</span>
+      {caption && <span className={`label-caption ${light ? 'text-white/70' : ''}`}>{caption}</span>}
+    </div>
+  );
+}
+
+const card = 'rounded-card p-6 sm:p-10 lg:p-14';
+const arrowLink = 'inline-flex items-center gap-2 font-semibold text-navy underline decoration-gold-deep decoration-2 underline-offset-4';
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero: the sign's two-panel layout, expanded. Cream text panel, photo, gold S-curve between them. */}
-      <section className="relative overflow-hidden bg-cream">
-        <div className="grid md:grid-cols-2">
-          <div className="order-2 px-4 pb-12 pt-8 sm:px-6 md:order-1 md:py-20">
-            <div className="md:ml-auto md:max-w-[34rem]">
-              <p className="font-serif text-2xl italic text-navy-soft" lang="xh">
-                Molweni, namkelekile.
-              </p>
-              <h1 className="mt-3 text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
-                Your family doctor in Mbekweni, Paarl.
-              </h1>
-              <p className="mt-5 max-w-prose text-lg">
-                {doctor.fullName}, {doctor.qualifications}, is a GP (general practitioner) at {address.street},{' '}
-                {address.landmarkInSentence}. Adults, children and older patients are all welcome, seven days a week,
-                including public holidays.
-              </p>
-              <CtaButtons className="mt-7" />
-              <p className="mt-5 font-bold text-navy">
-                <OpenNow />
-              </p>
-            </div>
-          </div>
-
-          <div className="relative order-1 h-80 sm:h-[26rem] md:order-2 md:h-auto md:min-h-[38rem]">
-            <Photo
-              name="doctor-portrait"
-              alt={`${doctor.fullName} at his desk in the consulting room, smiling, with a stethoscope around his neck`}
-              width={1100}
-              height={1375}
-              priority
-              className="absolute inset-0 h-full w-full object-cover object-[62%_18%]"
-            />
-            <svg
-              className="absolute inset-y-0 left-0 hidden h-full w-28 md:block"
-              viewBox="0 0 100 600"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path d="M0 0 H62 C6 150 104 450 38 600 H0 Z" fill="#F5F2EC" />
-              <path
-                d="M62 0 C6 150 104 450 38 600"
-                fill="none"
-                stroke="#C9A227"
-                strokeWidth="7"
-                vectorEffect="non-scaling-stroke"
-                className="curve-draw"
-              />
-            </svg>
-            <svg
-              className="absolute inset-x-0 bottom-0 h-14 w-full md:hidden"
-              viewBox="0 0 600 100"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path d="M0 100 V40 C150 100 450 -10 600 50 V100 Z" fill="#F5F2EC" />
-              <path d="M0 40 C150 100 450 -10 600 50" fill="none" stroke="#C9A227" strokeWidth="6" vectorEffect="non-scaling-stroke" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      {/* Legitimacy strip: the sign's charcoal panel */}
-      <section aria-label="Practice details" className="bg-charcoal">
-        <ul role="list" className="mx-auto grid max-w-site gap-5 px-4 py-7 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
-          <Fact icon="clipboard" label="Practice number" value={doctor.practiceNumber} />
-          <Fact icon="badge" label="HPCSA (MP) No." value={doctor.hpcsaNumber.replace('MP ', '')} />
-          <Fact icon="pin" label="Address" value={`${address.street}, ${address.suburb}, ${address.landmarkInSentence}`} />
-          <Fact icon="clock" label="Opening times" value="7 days a week, including public holidays" />
-        </ul>
-      </section>
-
-      {/* Services */}
-      <section className="mx-auto max-w-site px-4 py-14 sm:px-6 md:py-20">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl">Medical services we offer</h2>
-          <p className="mt-3 text-lg text-navy-soft">
-            Most of what a family needs from a doctor, under one roof. If you are not sure whether we can help, ask us on
-            WhatsApp.
-          </p>
-        </div>
-        <div className="mt-6">
-          <ServiceList />
-        </div>
-        <Link href="/services/" className={`mt-8 ${arrowLink}`}>
-          Read about each service
-          <Icon name="arrow" className="h-5 w-5" />
-        </Link>
-      </section>
-
-      <div className="rule-gold mx-auto max-w-site" />
-
-      {/* Doctor */}
-      <section className="mx-auto grid max-w-site items-center gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 md:py-20">
+      {/* Hero: full-bleed photo; the rest of the page slides over it */}
+      <section className="sticky top-0 z-0 h-[100svh] min-h-[600px] overflow-hidden bg-navy">
         <Photo
           name="entrance"
           alt={`${doctor.fullName} standing at the entrance of the practice at ${address.street}, ${address.suburb}, under the practice sign`}
           width={1600}
           height={1156}
-          className="w-full rounded-lg object-cover"
+          priority
+          sizes="100vw"
+          className="hero-photo absolute inset-0 h-full w-full object-cover object-[50%_35%]"
         />
-        <div>
-          <h2 className="text-3xl sm:text-4xl">Meet Dr Tshayingwe</h2>
-          <p className="mt-4 text-lg">{bio.short}</p>
-          <ul role="list" className="mt-5 space-y-3">
-            {bio.approach.slice(0, 3).map((line) => (
-              <li key={line} className="flex gap-3">
-                <span className="mt-[0.6em] h-2 w-2 shrink-0 rounded-full bg-gold" aria-hidden="true" />
-                <span>{line}</span>
-              </li>
-            ))}
-          </ul>
-          {toConfirm.languages.confirmed && <p className="mt-4 font-bold text-navy">{toConfirm.languages.text}</p>}
-          <Link href="/about/" className={`mt-6 ${arrowLink}`}>
-            More about the doctor and the practice
-            <Icon name="arrow" className="h-5 w-5" />
-          </Link>
+        <div className="absolute inset-0 bg-hero-veil" aria-hidden="true" />
+        <div className="relative z-10 mx-auto flex h-full max-w-site flex-col items-center justify-end px-4 pb-24 pt-32 text-center text-white sm:px-6 md:justify-center md:pb-16">
+          <p lang="xh" className="font-serif text-2xl italic text-white/90 sm:text-3xl">
+            Molweni, namkelekile.
+          </p>
+          <h1 className="mt-4 max-w-4xl text-[2.75rem] font-medium leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Your family doctor in Mbekweni, Paarl.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-white/90 sm:text-xl">
+            {doctor.fullName}, {doctor.qualifications}. A GP for adults, children and older patients, open seven days a week,
+            including public holidays.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Pill href={contact.whatsapp} icon="whatsapp" tone="white">
+              WhatsApp us
+            </Pill>
+            <Pill href={contact.tel} icon="phone" tone="ghost">
+              Call {contact.phoneDisplay}
+            </Pill>
+          </div>
+          <p className="mt-6 text-sm font-semibold text-white/90">
+            <OpenNow />
+          </p>
         </div>
       </section>
 
-      {/* Virtual consultations */}
-      <section className="bg-navy text-white">
-        <div className="mx-auto max-w-site px-4 py-14 sm:px-6 md:py-20">
-          <div className="grid gap-10 md:grid-cols-2 md:items-start">
-            <div>
-              <h2 className="text-3xl text-white sm:text-4xl">Can&apos;t get to the practice?</h2>
+      {/* Everything below stacks over the hero */}
+      <div className="relative z-10 -mt-6 rounded-t-card-lg bg-cream">
+        <div className="mx-auto max-w-site space-y-3 px-2 pb-3 pt-3 sm:space-y-4 sm:px-4 sm:pt-4">
+          {/* About */}
+          <Reveal as="section" className={`${card} bg-white`}>
+            <div className="grid gap-8 md:grid-cols-12">
+              <div className="md:col-span-4">
+                <Label caption={`${address.suburb}, ${address.city}. Open since ${doctor.opened}.`}>About the practice</Label>
+              </div>
+              <div className="md:col-span-8">
+                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem]">
+                  A general practice that gives you time, plain answers and the same doctor at every visit.
+                </h2>
+                <p className="mt-5 max-w-2xl text-lg text-navy-soft">{bio.short}</p>
+                {toConfirm.languages.confirmed && <p className="mt-3 font-semibold text-navy">{toConfirm.languages.text}</p>}
+                <Link href="/about/" className={`mt-6 ${arrowLink}`}>
+                  More about Dr Tshayingwe
+                  <Icon name="arrow" className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+            <dl className="mt-12 grid gap-8 border-t border-navy/10 pt-10 sm:grid-cols-3">
+              <Stat value={7} label="days a week" note="Including public holidays" />
+              <Stat value={serviceCount} label="services under one roof" note="From immunisations to minor procedures" />
+              <Stat value={1} label="doctor you will always see" note="Dr Tshayingwe himself, at every visit" />
+            </dl>
+          </Reveal>
+
+          {/* Services */}
+          <Reveal as="section" className={`${card} bg-navy-gradient text-white`}>
+            <div className="grid gap-8 md:grid-cols-12">
+              <div className="md:col-span-4">
+                <Label light caption="Seven areas of care">
+                  Our services
+                </Label>
+                <Pill href="/services/" tone="white" className="mt-6">
+                  View all services
+                </Pill>
+              </div>
+              <div className="md:col-span-8">
+                <h2 className="text-3xl text-white sm:text-4xl lg:text-[2.75rem]">The right care for whatever you are facing.</h2>
+                <ul role="list" className="mt-6 flex flex-wrap gap-2">
+                  {chips.map((c) => (
+                    <li key={c} className="rounded-full bg-white/12 px-4 py-1.5 text-sm text-white ring-1 ring-white/20">
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="mt-10">
+              <ServicesAccordion />
+            </div>
+          </Reveal>
+
+          {/* Inside the practice */}
+          <Reveal as="section" className={`${card} bg-white`}>
+            <div className="grid gap-8 md:grid-cols-12">
+              <div className="md:col-span-4">
+                <Label caption="Registered, equipped and open">Inside the practice</Label>
+              </div>
+              <div className="md:col-span-8">
+                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem]">
+                  An HPCSA-registered GP with a waiting room, a consulting room and the equipment for everyday care.
+                </h2>
+              </div>
+            </div>
+            <div className="mt-10">
+              <Gallery />
+            </div>
+          </Reveal>
+
+          {/* Photo call-to-action */}
+          <Reveal as="section" className="relative flex min-h-[26rem] items-center justify-center overflow-hidden rounded-card text-center text-white">
+            <Photo
+              name="waiting-room"
+              alt=""
+              width={1600}
+              height={1104}
+              sizes="100vw"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-navy/65" aria-hidden="true" />
+            <div className="relative z-10 max-w-2xl px-6 py-16">
+              <h2 className="text-3xl text-white sm:text-5xl">Come in today, or consult from home.</h2>
               <p className="mt-4 text-lg text-white/90">{virtualConsultation.summary}</p>
-              <Link
-                href="/virtual-consultations/"
-                className="mt-6 inline-flex items-center gap-2 font-bold text-gold underline decoration-gold decoration-2 underline-offset-4"
-              >
-                How a virtual consultation works
-                <Icon name="arrow" className="h-5 w-5" />
-              </Link>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Pill href={contact.whatsapp} icon="whatsapp" tone="white">
+                  WhatsApp us
+                </Pill>
+                <Pill href="/virtual-consultations/" icon="video" tone="ghost">
+                  How virtual consultations work
+                </Pill>
+              </div>
             </div>
-            <ol role="list" className="space-y-4">
-              {virtualConsultation.steps.map((step, i) => (
-                <li key={step.title} className="flex gap-4">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gold font-serif text-xl text-gold">
-                    <span className="sr-only">Step </span>
-                    {i + 1}
-                  </span>
-                  <div>
-                    <div className="font-bold">{step.title}</div>
-                    <div className="text-white/85">
-                      <PhoneText text={step.body} />
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+          </Reveal>
 
-      {/* Visit */}
-      <section className="mx-auto max-w-site px-4 py-14 sm:px-6 md:py-20">
-        <div className="grid gap-10 md:grid-cols-2">
-          <div>
-            <h2 className="text-3xl sm:text-4xl">Visit us</h2>
-            <p className="mt-4 text-lg">
-              <span className="font-bold">
-                {address.street}, {address.suburb}, {address.city}, {address.postalCode}
-              </span>
-              <br />
-              {address.landmark}. Look for the sign above the door.
-            </p>
-            <div className="mt-6">
-              <HoursTable />
+          {/* Visit */}
+          <Reveal as="section" className={`${card} bg-white`}>
+            <div className="grid gap-10 md:grid-cols-12">
+              <div className="md:col-span-6">
+                <Label caption={address.landmark}>Visit us</Label>
+                <p className="mt-6 text-2xl font-medium tracking-tight text-navy">
+                  {address.street}, {address.suburb}, {address.city}, {address.postalCode}
+                </p>
+                <p className="mt-2 text-navy-soft">Look for the sign above the door.</p>
+                <div className="mt-6">
+                  <HoursTable />
+                </div>
+                <CtaButtons directions className="mt-8" />
+                {toConfirm.medicalAid.confirmed && <p className="mt-6">{toConfirm.medicalAid.text}</p>}
+                {toConfirm.fees.confirmed && <p className="mt-2">{toConfirm.fees.text}</p>}
+                <p className="mt-6 text-navy-soft">
+                  Email:{' '}
+                  <a className="font-semibold text-navy underline decoration-gold-deep decoration-2 underline-offset-4" href={contact.mailto}>
+                    {contact.email}
+                  </a>
+                </p>
+              </div>
+              <div className="md:col-span-6">
+                <MapCard />
+              </div>
             </div>
-            <CtaButtons directions className="mt-8" />
-            {toConfirm.medicalAid.confirmed && <p className="mt-6">{toConfirm.medicalAid.text}</p>}
-            {toConfirm.fees.confirmed && <p className="mt-2">{toConfirm.fees.text}</p>}
-            <p className="mt-6 text-navy-soft">
-              Email:{' '}
-              <a className="font-bold text-navy underline decoration-gold-deep decoration-2 underline-offset-4" href={contact.mailto}>
-                {contact.email}
-              </a>
-            </p>
-          </div>
-          <div>
-            <MapCard />
-          </div>
+            <div className="mt-10">
+              <EmergencyNotice />
+            </div>
+          </Reveal>
         </div>
-        <div className="mt-12">
-          <EmergencyNotice />
-        </div>
-      </section>
+      </div>
     </>
   );
 }

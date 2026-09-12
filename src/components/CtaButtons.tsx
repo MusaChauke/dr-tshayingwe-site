@@ -1,4 +1,4 @@
-import Icon from './Icon';
+import Pill from './Pill';
 import { contact, maps } from '@/lib/practice';
 
 /** The primary call-to-action pair used across pages. */
@@ -6,35 +6,25 @@ export default function CtaButtons({
   directions = false,
   className = '',
   whatsappHref = contact.whatsapp,
+  onDark = false,
 }: {
   directions?: boolean;
   className?: string;
   whatsappHref?: string;
+  onDark?: boolean;
 }) {
   return (
     <div className={`flex flex-wrap gap-3 ${className}`}>
-      <a
-        href={whatsappHref}
-        className="tap inline-flex items-center gap-2 rounded-md bg-wa px-5 py-3 text-lg font-bold text-white hover:bg-wa-deep"
-      >
-        <Icon name="whatsapp" className="h-6 w-6" />
+      <Pill href={whatsappHref} icon="whatsapp" tone="wa">
         WhatsApp us
-      </a>
-      <a
-        href={contact.tel}
-        className="tap inline-flex items-center gap-2 rounded-md bg-navy px-5 py-3 text-lg font-bold text-white hover:bg-navy-deep"
-      >
-        <Icon name="phone" className="h-6 w-6" />
+      </Pill>
+      <Pill href={contact.tel} icon="phone" tone={onDark ? 'ghost' : 'navy'}>
         Call {contact.phoneDisplay}
-      </a>
+      </Pill>
       {directions && (
-        <a
-          href={maps.googleDirections}
-          className="tap inline-flex items-center gap-2 rounded-md border-2 border-navy px-5 py-3 text-lg font-bold text-navy hover:bg-cream"
-        >
-          <Icon name="pin" className="h-6 w-6" />
+        <Pill href={maps.googleDirections} icon="pin" tone={onDark ? 'ghost' : 'white'} className={onDark ? '' : 'ring-1 ring-navy/20'}>
           Directions
-        </a>
+        </Pill>
       )}
     </div>
   );

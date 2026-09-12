@@ -1,26 +1,26 @@
 import type { Metadata, Viewport } from 'next';
-import { Newsreader, Source_Sans_3 } from 'next/font/google';
+import { Instrument_Serif, Manrope } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ActionBar from '@/components/ActionBar';
+import SmoothScroll from '@/components/SmoothScroll';
 import { JsonLd, siteSchema } from '@/lib/schema';
 import { OG_IMAGE, ogBase } from '@/lib/seo';
 import { SITE_URL, doctor } from '@/lib/practice';
 
-const display = Newsreader({
+const body = Manrope({
   subsets: ['latin'],
-  style: ['normal', 'italic'],
-  axes: ['opsz'],
-  variable: '--font-display',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-body',
   display: 'swap',
 });
 
-const body = Source_Sans_3({
+const display = Instrument_Serif({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: '400',
   style: ['normal', 'italic'],
-  variable: '--font-body',
+  variable: '--font-display',
   display: 'swap',
 });
 
@@ -63,7 +63,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-ZA" className={`${display.variable} ${body.variable}`}>
+    <html lang="en-ZA" className={`${body.variable} ${display.variable}`}>
       <body>
         <a
           href="#main"
@@ -71,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <SmoothScroll />
         <Header />
         <main id="main">{children}</main>
         <Footer />

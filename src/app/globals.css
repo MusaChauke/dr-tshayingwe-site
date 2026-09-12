@@ -11,17 +11,30 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
-  @apply bg-white text-ink font-sans antialiased;
-  font-size: 1.0625rem; /* 17px: larger default for readability */
+  @apply bg-cream text-ink font-sans antialiased;
+  font-size: 1.0625rem;
   line-height: 1.6;
 }
 
-/* Room for the fixed action bar on phones */
+/* Room for the fixed action bar on phones, for layout and for focus/anchor scrolling */
 @media (max-width: 767px) {
   body {
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
@@ -34,13 +47,24 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-serif text-navy;
+  @apply font-sans font-medium tracking-tight text-navy;
   text-wrap: balance;
-  font-variation-settings: 'opsz' 72;
+  line-height: 1.08;
 }
 
 p {
   text-wrap: pretty;
+}
+
+/* Small serif section label, as on the reference design (in the components layer so utilities can recolour it) */
+@layer components {
+  .label {
+    @apply font-serif text-2xl text-navy;
+    letter-spacing: 0.005em;
+  }
+  .label-caption {
+    @apply mt-1 block text-sm text-navy-soft;
+  }
 }
 
 a:focus-visible,
@@ -48,31 +72,63 @@ button:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;
-  box-shadow: 0 0 0 2px #fff; /* inner white ring keeps the indicator visible on navy, charcoal and green */
+  box-shadow: 0 0 0 2px #fff;
 }
 
-/* One deliberate motion: the gold curve draws itself on first paint. */
-.curve-draw {
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-  animation: curve-draw 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+/* Reveal on scroll: one calm fade-and-rise per block, staggered for children */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
 }
-@keyframes curve-draw {
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero photo settles in slightly on load */
+.hero-photo {
+  animation: hero-settle 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform: scale(1.06);
+}
+@keyframes hero-settle {
   to {
-    stroke-dashoffset: 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .curve-draw {
-    animation: none;
-    stroke-dashoffset: 0;
+    transform: scale(1);
   }
 }
 
-/* Gold hairline used as a section divider, like the rules on the banner */
+/* Accordion body height animation */
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.acc-body[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+.acc-body > div {
+  overflow: hidden;
+}
+
+/* Pill button icon badge */
+.pill-badge {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pill:hover .pill-badge {
+  transform: rotate(-12deg) scale(1.08);
+}
+
+/* Horizontal snap carousel without a visible scrollbar */
+.snap-row {
+  scrollbar-width: none;
+}
+.snap-row::-webkit-scrollbar {
+  display: none;
+}
+
 .rule-gold {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
@@ -80,4 +136,20 @@ summary:focus-visible {
 
 .tap {
   min-height: 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-photo {
+    animation: none;
+    transform: none;
+  }
+  .acc-body,
+  .pill-badge {
+    transition: none;
+  }
 }
