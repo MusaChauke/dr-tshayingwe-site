@@ -40,7 +40,7 @@ export function siteSchema() {
         '@id': CLINIC_ID,
         name: doctor.shortName,
         alternateName: [doctor.fullName, `${doctor.shortName} General Practitioner`],
-        description: `${tagline} General practitioner in Mbekweni, Paarl: consultations, chronic disease care, child and family health, minor procedures, HIV testing, women's and men's health, virtual consultations and home visits across Paarl by arrangement. Medicines dispensed on site. Medical emergencies seen during opening times. Consultations in isiXhosa, English and Afrikaans. Medical aid, card and cash accepted. Open seven days a week.`,
+        description: `${tagline} General practitioner in Mbekweni, Paarl: consultations, chronic disease care, child and family health, minor procedures, HIV testing, women's and men's health, with home visits across Paarl by arrangement. All consultations are in person, at the practice or at your home. Medicines dispensed on site. Medical emergencies seen during opening times. Consultations in isiXhosa, English and Afrikaans. Medical aid, card and cash accepted. Open seven days a week.`,
         url: `${SITE_URL}/`,
         telephone: contact.phoneE164,
         email: contact.email,

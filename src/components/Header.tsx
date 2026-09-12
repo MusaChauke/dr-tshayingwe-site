@@ -34,7 +34,12 @@ export default function Header() {
 
         <nav aria-label="Main" className="hidden items-center gap-7 md:flex">
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className={`py-2 font-semibold transition-colors ${link}`}>
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={pathname === item.href ? 'page' : undefined}
+              className={`py-2 font-semibold transition-colors ${link} ${pathname === item.href ? 'underline decoration-gold decoration-2 underline-offset-8' : ''}`}
+            >
               {item.label}
             </Link>
           ))}
@@ -48,7 +53,11 @@ export default function Header() {
         <ul className={`mx-auto flex max-w-site justify-between gap-2 overflow-x-auto px-3 pb-2 text-sm font-semibold ${overlay ? 'text-white' : 'text-navy'}`}>
           {nav.map((item) => (
             <li key={item.href} className="shrink-0">
-              <Link href={item.href} className="tap flex items-center px-1 py-2">
+              <Link
+                href={item.href}
+                aria-current={pathname === item.href ? 'page' : undefined}
+                className={`tap flex items-center px-1 py-2 ${pathname === item.href ? 'underline decoration-gold decoration-2 underline-offset-4' : ''}`}
+              >
                 {item.label}
               </Link>
             </li>

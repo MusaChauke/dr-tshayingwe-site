@@ -33,7 +33,6 @@ export const contact = {
   phoneE164: '+27716700634',
   tel: 'tel:+27716700634',
   whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to make an appointment.\nName:\nWhat I need:'),
-  whatsappVirtual: whatsappLink('Hello Dr Tshayingwe, I would like a virtual consultation (video or phone call).\nName:\nWhat I need:'),
   whatsappPlain: `https://wa.me/${WA_NUMBER}`,
   email: 'drstshayingwe@gmail.com',
   mailto: 'mailto:drstshayingwe@gmail.com',
@@ -201,41 +200,21 @@ export const services: ServiceGroup[] = [
   },
 ];
 
-export const virtualConsultation = {
-  summary:
-    'If you cannot get to the practice, Dr Tshayingwe can consult with you by video call or telephone during opening hours.',
-  goodFor: [
-    'Follow-up visits and repeat prescriptions for a condition already under treatment',
-    'Discussing test results',
-    'Minor illnesses where an examination is not essential',
-    'Advice on whether you need to be seen in person',
-  ],
-  notFor: [
-    'Emergencies and injuries: come straight to the practice during opening times',
-    'Problems that need a physical examination, a procedure or an injection (a home visit across Paarl can be arranged a day ahead if you cannot travel)',
-    'A first consultation for a chronic condition',
-  ],
-  steps: [
-    { title: 'Message or call us', body: 'WhatsApp or phone 071 670 0634 during opening hours and ask for a virtual consultation.' },
-    { title: 'Agree a time and pay', body: 'We confirm a time, the fee and how to pay before the call.' },
-    {
-      title: 'Have your consultation',
-      body: 'Dr Tshayingwe calls you by video or phone. He first confirms who you are and where you are, and asks you to agree to a telehealth consultation and its limits. If a prescription, sick note or letter is appropriate, it is sent to you afterwards. Some medicines cannot be prescribed without an in-person examination.',
-    },
-  ],
-};
-
 export const emergency = {
   ambulance: { label: 'Ambulance (EMS)', number: '10177', tel: 'tel:10177' },
   cell: { label: 'Emergency from a cell phone', number: '112', tel: 'tel:112' },
   hospital: { label: 'Paarl Hospital', number: '021 860 2500', tel: 'tel:+27218602500' },
 };
 
-/** Home visits, confirmed by the doctor on 2026-09-12. */
+/** Home visits, confirmed by the doctor on 2026-09-12. All consultations are in person (no telehealth for now). */
 export const homeVisits = {
   area: 'Paarl',
   notice: 'at least one day in advance',
-  summary: 'Home visits are available across Paarl for patients who cannot get to the practice. Please arrange at least one day in advance.',
+  summary: 'If you cannot get to the practice, Dr Tshayingwe can come to you. Home visits are available across Paarl and must be arranged at least one day in advance by WhatsApp or phone.',
+  whatsapp: whatsappLink('Hello Dr Tshayingwe, I would like to arrange a home visit.
+Name:
+Address:
+What I need:'),
 };
 
 /** Languages the doctor consults in, confirmed 2026-09-12. */
@@ -279,9 +258,9 @@ export const bio = {
 };
 
 export const nav = [
+  { href: '/', label: 'Home' },
   { href: '/about/', label: 'About' },
   { href: '/services/', label: 'Services' },
-  { href: '/virtual-consultations/', label: 'Virtual consultations' },
   { href: '/contact/', label: 'Contact' },
 ];
 

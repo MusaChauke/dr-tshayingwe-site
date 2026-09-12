@@ -12,7 +12,7 @@ import Photo from '@/components/Photo';
 import Pill from '@/components/Pill';
 import Reveal from '@/components/Reveal';
 import ServicesAccordion from '@/components/ServicesAccordion';
-import { address, bio, contact, doctor, homeVisits, services, toConfirm, virtualConsultation } from '@/lib/practice';
+import { address, bio, contact, doctor, homeVisits, services, toConfirm } from '@/lib/practice';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -183,16 +183,14 @@ export default function HomePage() {
             />
             <div className="absolute inset-0 bg-navy/65" aria-hidden="true" />
             <div className="relative z-10 max-w-2xl px-6 py-16">
-              <h2 className="text-3xl text-white sm:text-5xl">Come in today, consult from home, or have the doctor come to you.</h2>
-              <p className="mt-4 text-lg text-white/90">
-                {virtualConsultation.summary} {homeVisits.summary}
-              </p>
+              <h2 className="text-3xl text-white sm:text-5xl">Come in today, or have the doctor come to you.</h2>
+              <p className="mt-4 text-lg text-white/90">{homeVisits.summary}</p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Pill href={contact.whatsapp} icon="whatsapp" tone="white">
                   WhatsApp us
                 </Pill>
-                <Pill href="/virtual-consultations/" icon="video" tone="ghost">
-                  How virtual consultations work
+                <Pill href={homeVisits.whatsapp} icon="pin" tone="ghost">
+                  Arrange a home visit
                 </Pill>
               </div>
             </div>
