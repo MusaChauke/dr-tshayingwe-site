@@ -118,7 +118,7 @@ export const services: ServiceGroup[] = [
       { name: 'Wellness screenings', detail: 'Blood pressure, blood sugar, weight and general health checks.' },
       { name: 'PDP and medical assessments', detail: 'Medical examinations for professional driving permits and other fitness certificates.' },
       { name: 'Drips and injections', detail: 'Intravenous fluids or medicines given at the practice when you need them, for example for dehydration, so that you can be treated without going to hospital.' },
-      { name: 'Medicines dispensed on site', detail: 'Where possible, the medicines you are prescribed are dispensed at the practice, so you leave with them in hand.' },
+      { name: 'Medicines dispensed on site', detail: 'Dr Tshayingwe holds a dispensing licence, so where possible the medicines you are prescribed are dispensed at the practice and you leave with them in hand.' },
       { name: 'Home visits', detail: 'Across Paarl, for patients who cannot get to the practice. Please arrange at least one day in advance by WhatsApp or phone.' },
     ],
   },
@@ -258,8 +258,8 @@ export const toConfirm = {
     text: 'We accept medical aid, card (debit or credit) and cash. Please bring your medical aid card and tell us your scheme when you book so we can confirm how your claim works.',
   },
   fees: {
-    confirmed: false,
-    text: 'Ask about consultation fees when you call or message us.',
+    confirmed: true,
+    text: 'A standard consultation is R500. Procedures, medicines and medicals are quoted before they are done.',
   },
   bioExtra: {
     confirmed: true,
