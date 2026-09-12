@@ -9,7 +9,7 @@ import { doctor, services, toConfirm } from '@/lib/practice';
 export const metadata = pageMeta(
   '/services/',
   'GP services in Mbekweni, Paarl',
-  "GP services in Mbekweni, Paarl: consultations, PDP medicals, chronic care, HIV testing, family planning, minor procedures, children's, women's and men's health.",
+  "GP services in Mbekweni, Paarl: consultations, PDP medicals, chronic care, HIV testing, family planning, minor procedures, child, women's and men's health.",
 );
 
 const whatToBring = [

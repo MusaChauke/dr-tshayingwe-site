@@ -20,7 +20,8 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   return pageMeta(
     `/services/${group.slug}/`,
     group.seoTitle,
-    `${group.summary} ${group.items.map((i) => i.name).join(', ')}. ${doctor.shortName}, ${address.street}, ${address.suburb}, ${address.city}. Call or WhatsApp 071 670 0634.`,
+    `${group.items.map((i) => i.name).join(', ')}. ${doctor.shortName}, ${address.street}, ${address.suburb}, ${address.city}. Call or WhatsApp 071 670 0634.`,
+    { title: { absolute: group.seoTitle } },
   );
 }
 

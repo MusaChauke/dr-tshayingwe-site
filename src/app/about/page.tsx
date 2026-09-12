@@ -8,7 +8,7 @@ import { address, bio, doctor, toConfirm } from '@/lib/practice';
 export const metadata = pageMeta(
   '/about/',
   `About ${doctor.fullName}`,
-  `${doctor.fullName}, ${doctor.qualifications}, HPCSA ${doctor.hpcsaNumber}. General practice in Mbekweni, Paarl since ${doctor.opened}. See the practice and how consultations work.`,
+  `${doctor.fullName}, ${doctor.qualifications}, HPCSA ${doctor.hpcsaNumber}. General practitioner in Mbekweni, Paarl since ${doctor.opened}. Meet the doctor and see the practice.`,
 );
 
 const gallery = [
